@@ -1,10 +1,8 @@
-<p align="center"><img width="40%" src="./imgs/PyTorch_KR.png"></p>
+<p align="center"><img width="40%" src="./imgs/PyTorch_KR.jpg"></p>
 
 ---------------------------------------------------------------------
 
 Pytorch Tutorial for Non-Euclidean Graph Representations
-
-This project is made by Bumsoo Kim, Ph.D Candidate in Korea University.
 
 ## Table of Contents
 - [1.Going Beyond Euclidean Data : Graphs](./1_Going_Beyond_Euclidean_Data/)[paper](https://arxiv.org/pdf/1611.08097.pdf)
@@ -22,3 +20,4 @@ This project is made by Bumsoo Kim, Ph.D Candidate in Korea University.
 
 ## Author
 Bumsoo Kim/ [@meliketoy](https://github.com/meliketoy)
+Korea University
