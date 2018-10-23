@@ -1,4 +1,4 @@
-# Geometric Deep Learning: Going Beyond Euclidean Data
+Geometric Deep Learning: Going Beyond Euclidean Data
 -------------------------------------------------------
 You can see the original paper in [here](https://arxiv.org/pdf/1611.08097.pdf).
 
@@ -28,8 +28,9 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 
 Manifold 형태 데이터의 대표적인 예시로는 mesh 혹은 point cloud 형태를 들 수 있습니다.
 
-<p align="left"><img width="30%" src="./figures/minion_mesh.jpg"></p>
-<p align="right"><img width="30%" src="./figures/point_cloud.jpg"></p>
+| <p align="center"><img width="30%" src="./figures/minion_mesh.jpg"></p> | <p align="center"><img width="30%" src="./figures/point_cloud.jpg"></p> |
+|:---:|:---:|
+| Mesh | Point cloud |
 
 ### [1.2.2 Graph]()
 
