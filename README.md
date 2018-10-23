@@ -1,6 +1,8 @@
-Non-Euclidean-Graph-Tutorial
-============================================================================================
+<p align="center"><img width="40%" src="./imgs/pytorch.png"></p>
+
 Pytorch Tutorial for Non-Euclidean Graph Representations
+
+This project is made by Bumsoo Kim, Ph.D Candidate in Korea University.
 
 Index
 - [1.Going Beyond Euclidean Data : Graphs](./1_Going_Beyond_Euclidean_Data/)
