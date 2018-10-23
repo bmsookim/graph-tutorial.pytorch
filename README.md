@@ -1,4 +1,6 @@
-<p align="center"><img width="20%" src="./imgs/pytorch_KR.png"></p>
+Graph Representation Tutorial
+
+<p align="center"><img width="10%" src="./imgs/pytorch_KR.png"></p>
 
 ---------------------------------------------------------------------
 
