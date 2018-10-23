@@ -1,6 +1,6 @@
 Geometric Deep Learning: Going Beyond Euclidean Data
 -------------------------------------------------------
-[paper](https://arxiv.org/pdf/1611.08097.pdf)
+You can see the original paper in [here](https://arxiv.org/pdf/1611.08097.pdf).
 
 ## 1.1 Euclidean 공간이란?
 
@@ -20,16 +20,16 @@ Euclidean 공간(혹은 Euclidean Geometry)란, 수학적으로 [유클리드]()
 
 문자 그대로 'Euclidean 공간이 아닌 공간'을 지칭하며, 대표적으로 두 가지를 들 수 있다.
 
-- [Manifold]()
+### [1.2.1 Manifold]()
 
 Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유클리디안(Euclidean metric, 직선거리)를 따르지만 원거리에서는 그렇지 않은 공간을 일컫는다.
 
 이해가 쉬운 가장 간단한 예로는, 구의 표면(2차원 매니폴드)를 들 수 있습니다. 3차원 공간에서 A점과 B점 사이의 유클리디안 거리(초록선)과 실제의 거리(geodesic distance, 빨간선)는 일치하지 않는 것을 볼 수 있습니다.
 
-![alt-tag](./figures/3d_earth.jpg)
+![3D-Earth](./figures/3d_earth.jpg)
 
 
-- [Graph]()
+### [1.2.2 Graph]()
 
 Graph 데이터란, 
 [:Graph Data의 예시]
