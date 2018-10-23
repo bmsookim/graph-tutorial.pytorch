@@ -1,4 +1,4 @@
-<p align="center"><img width="40%" src="./imgs/pytorch_KR.png"></p>
+<p align="center"><img width="20%" src="./imgs/pytorch_KR.png"></p>
 
 ---------------------------------------------------------------------
 
