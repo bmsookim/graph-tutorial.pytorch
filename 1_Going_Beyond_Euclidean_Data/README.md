@@ -1,4 +1,4 @@
-Geometric Deep Learning: Going Beyond Euclidean Data
+# Geometric Deep Learning: Going Beyond Euclidean Data
 -------------------------------------------------------
 You can see the original paper in [here](https://arxiv.org/pdf/1611.08097.pdf).
 
@@ -16,8 +16,6 @@ Euclidean 공간(혹은 Euclidean Geometry)란, 수학적으로 [유클리드]()
 
 ## 1.2 Non Euclidean 공간이란?
 
-
-
 문자 그대로 'Euclidean 공간이 아닌 공간'을 지칭하며, 대표적으로 두 가지를 들 수 있다.
 
 ### [1.2.1 Manifold]()
@@ -31,7 +29,7 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 
 ### [1.2.2 Graph]()
 
-Graph 데이터란, 
-[:Graph Data의 예시]
+Graph란, 일련의 노드의 집합 V와 연결(변)의 집합 E로 구성된 자료 구조의 일종이다.
+일반적으로 노드에는 데이터가, 엣지엔 노드와 노드 사이의 관계 정보가 포함되어 있습니다.
 
 
