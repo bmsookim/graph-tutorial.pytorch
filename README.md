@@ -1,5 +1,4 @@
-<p align="left"><img width="40%" src="./imgs/pytorch_logo_2018.svg"></p>
-<p align="right"><img width="10%" src="./imgs/pytorch_KR.png"></p>
+<p align="left"><img width="40%" src="./imgs/pytorch_logo_2018.svg"></p> <p align="right"><img width="10%" src="./imgs/pytorch_KR.png"></p>
 
 ---------------------------------------------------------------------
 
