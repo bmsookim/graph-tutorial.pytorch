@@ -1,4 +1,6 @@
-# Euclidean vs Non-Euclidean
+Geometric Deep Learning: Going Beyond Euclidean Data
+-------------------------------------------------------
+[paper](https://arxiv.org/pdf/1611.08097.pdf)
 
 ## 1.1 Euclidean 공간이란?
 
