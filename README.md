@@ -1,4 +1,4 @@
-![alt-text-1](./imgs/pytorch_logo_2018.svg "logo") ![alt-text-2](./imgs/pytorch_KR.png "KR")
+<p align="left"><img width="40%" src="./imgs/pytorch_logo_2018.svg"></p>
 
 ---------------------------------------------------------------------
 
