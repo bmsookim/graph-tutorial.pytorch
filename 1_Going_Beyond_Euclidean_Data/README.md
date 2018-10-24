@@ -28,7 +28,7 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 
 Manifold 형태 데이터의 대표적인 예시로는 mesh 혹은 point cloud 형태를 들 수 있습니다.
 
-| <img width ="100" src="./figures/mesh.jpg"> | <img width="100" src="./figures/point_cloud.jpg"> |
+| <img width ="300" src="./figures/mesh.jpg"> | <img width="300" src="./figures/point_cloud.jpg"> |
 |:---:|:---:|
 | **Mesh** | **Point cloud** |
 
@@ -37,6 +37,6 @@ Manifold 형태 데이터의 대표적인 예시로는 mesh 혹은 point cloud �
 Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구성된 자료 구조의 일종이다.
 일반적으로 노드에는 데이터가, 엣지엔 노드와 노드 사이의 관계 정보가 포함되어 있습니다.
 
-| <img width="100" src="./figures/social_network.png"> | <img width="100" src="./figures/brain_functions.jpeg"> |
+| <img width="300" src="./figures/social_network.png"> | <img width="250" src="./figures/brain_functions.jpeg"> |
 |:---:|:---:|
 | **Social Networks** | **Brain Functional Networks** |
