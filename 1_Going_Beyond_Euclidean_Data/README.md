@@ -2,6 +2,8 @@ Geometric Deep Learning: Going Beyond Euclidean Data
 -------------------------------------------------------
 You can see the original paper in [here](https://arxiv.org/pdf/1611.08097.pdf).
 
+# Euclidean vs Non-Euclidean
+
 ## 1.1 Euclidean 공간이란?
 
 Euclidean 공간(혹은 Euclidean Geometry)란, 수학적으로 [유클리드]()가 연구했던 평면과 공간의 일반화된 표현이다.
@@ -13,10 +15,6 @@ Euclidean 공간(혹은 Euclidean Geometry)란, 수학적으로 [유클리드]()
 [:2D 이미지]
 [:3D Voxel]
 [:음성]
-
-| <img width ="250" src="./figures/mesh.jpg"> | <img width="250" src="./figures/point-cloud.png"> | <img width = "250" src="./figures/audio."> |
-|:---:|:---:|
-| **2D image** | **3D Voxel** | **Audio** |
 
 ## 1.2 Non Euclidean 공간이란?
 
@@ -48,7 +46,7 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 | **Social Networks** | **Brain Functional Networks** |
 
 |     용어     |        설명         |
-|:------------:|:-------------------:|
+|:------------:|:--------------------|
 | sparse graph | node의 # > edge의 # | 
 | dense graph  | node의 # < edge의 # |
 | adjacent     | 임의의 두 node가 하나의 edge로 연결되어 있을 경우, 두 node는 서로 adjacent 하다 |
@@ -56,6 +54,8 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 | degree       | node에 연결된 edge의 개수 |
 
 ------------------------------------------------------------------------------------------------------------
+
+# Spatial vs Spectral
 
 ## 2.1 Spacial Domain
 
