@@ -24,11 +24,11 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 
 이해가 쉬운 가장 간단한 예로는, 구의 표면(2차원 매니폴드)를 들 수 있습니다. 3차원 공간에서 A점과 B점 사이의 유클리디안 거리(초록선)과 실제의 거리(geodesic distance, 빨간선)는 일치하지 않는 것을 볼 수 있습니다.
 
-![3D-Earth](./figures/3d_earth.jpg)
+<img width="50%" src="./figures/distance.png">
 
 Manifold 형태 데이터의 대표적인 예시로는 mesh 혹은 point cloud 형태를 들 수 있습니다.
 
-| <img width ="40%" src="./figures/mesh.jpg"> | <img width="40%" src="./figures/point_cloud.jpg"> |
+| <img width ="100" src="./figures/mesh.jpg"> | <img width="100" src="./figures/point_cloud.jpg"> |
 |:---:|:---:|
 | **Mesh** | **Point cloud** |
 
@@ -37,6 +37,6 @@ Manifold 형태 데이터의 대표적인 예시로는 mesh 혹은 point cloud �
 Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구성된 자료 구조의 일종이다.
 일반적으로 노드에는 데이터가, 엣지엔 노드와 노드 사이의 관계 정보가 포함되어 있습니다.
 
-| <img width="40%" src="./figures/social_network.png"> | <img width="40%" src="./figures/brain_functions.jpeg"> |
+| <img width="100" src="./figures/social_network.png"> | <img width="100" src="./figures/brain_functions.jpeg"> |
 |:---:|:---:|
 | **Social Networks** | **Brain Functional Networks** |
