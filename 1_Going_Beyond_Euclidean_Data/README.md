@@ -28,7 +28,7 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 
 Manifold 형태 데이터의 대표적인 예시로는 mesh 혹은 point cloud 형태를 들 수 있습니다.
 
-| <img width ="300" src="./figures/mesh.jpg"> | <img width="300" src="./figures/point_cloud.jpg"> |
+| <img width ="250" src="./figures/mesh.jpg"> | <img width="250" src="./figures/point_cloud.jpg"> |
 |:---:|:---:|
 | **Mesh** | **Point cloud** |
 
