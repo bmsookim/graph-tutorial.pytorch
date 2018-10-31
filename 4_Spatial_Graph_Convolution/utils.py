@@ -64,7 +64,10 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
 
     for i in range(len(names)):
         with open("{}/ind.{}.{}".format(path, dataset, names[i]), 'rb') as f:
-            objects.append(pkl.load(f, encoding='latin1'))
+            if (sys.version_info > (3,0)):
+                objects.append(pkl.load(f, encoding='latin1')) # python3 compatibility
+            else:
+                objects.append(pkl.load(f)) # python2
 
     x, y, tx, ty, allx, ally, graph = tuple(objects)
 
