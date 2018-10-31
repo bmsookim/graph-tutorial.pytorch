@@ -1,4 +1,3 @@
-import sys
 import numpy as np
 import pickle as pkl
 import networkx as nx
@@ -65,10 +64,7 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
 
     for i in range(len(names)):
         with open("{}/ind.{}.{}".format(path, dataset, names[i]), 'rb') as f:
-            if (sys.version_info > (3,0)):
-                objects.append(pkl.load(f, encoding='latin1')) # python3 compatibility
-            else:
-                objects.append(pkl.load(f)) # python2
+            objects.append(pkl.load(f, encoding='latin1'))
 
     x, y, tx, ty, allx, ally, graph = tuple(objects)
 
