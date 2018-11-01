@@ -107,4 +107,12 @@ After you have finished training, you can test out your network by
 python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed] --model [:basic|drop_in]
 ```
 
+## Result
+
+| Method      | Citeseer | Cora | Pubmed |
+|:------------|:---------|:-----|:-------|
+| GCN (rand)  | 67.9     | 80.1 | 78.9   |
+| GCN (paper) | 70.3     | 81.5 | 79.0   |
+| GCN (recon) | 70.6     | 80.9 | 80.8   |
+
 Enjoy :-)
