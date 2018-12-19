@@ -1,9 +1,4 @@
-<p align="center"><img width="40%" src="./imgs/pytorch.png"></p>
-
-Pytorch implementation of Graph Convolution Networks & Graph Attention Convolutional Networks.
-
-This project is made by Bumsoo Kim, Ph.D Candidate in Korea University.
-This repo has been forked from [https://github.com/tkipf/pygcn](https://github.com/tkipf/pygcn).
+# Pytorch implementation of Graph Convolution Networks & Graph Attention Convolutional Networks.
 
 ## Graph Convolutional Networks
 Many important real-world datasets come in the form of graphs or networks: social networks, knowledge graphs, protein-interaction networks, the World Wide Web, etc. In this repository, we introduce a basic tutorial for generalizing neural netowrks to work on arbitrarily structured graphs, along with Graph Attention Convolutional Networks([Attention GCN](https://arxiv.org/abs/1710.10903)).
