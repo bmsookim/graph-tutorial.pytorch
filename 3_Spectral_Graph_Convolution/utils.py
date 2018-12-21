@@ -1,3 +1,14 @@
+# ************************************************************
+# Author : Bumsoo Kim, 2018
+# Github : https://github.com/meliketoy/graph-tutorial.pytorch
+#
+# Korea University, Data-Mining Lab
+# Basic Tutorial for Non-Euclidean Graph Representation Learning
+#
+# Description : utils.py
+# Code for uploading planetoid dataset
+# ***********************************************************
+
 import sys
 import numpy as np
 import pickle as pkl
@@ -75,6 +86,7 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
     test_idx_reorder = parse_index_file("{}/ind.{}.test.index".format(path, dataset))
     test_idx_range = np.sort(test_idx_reorder)
 
+    '''
     if dataset == 'citeseer':
         #Citeseer dataset contains some isolated nodes in the graph
         test_idx_range_full = range(min(test_idx_reorder), max(test_idx_reorder)+1)
@@ -85,6 +97,7 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
         ty_extended = np.zeros((len(test_idx_range_full), y.shape[1]))
         ty_extended[test_idx_range-min(test_idx_range), :] = ty
         ty = ty_extended
+    '''
 
     features = sp.vstack((allx, tx)).tolil()
     features[test_idx_reorder, :] = features[test_idx_range, :]
