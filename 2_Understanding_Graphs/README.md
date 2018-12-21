@@ -71,6 +71,13 @@ validation set 은 따로 지정되있지 않으므로, 500개로 설정하여 �
 
 ```bash
 $ python preprocess_planetoid.py --dataset [:dataset] --mode split
+
+# Citeseer example
+$ python preprocess_planetoid.py --dataset citeseer --mode split
+> [STEP 1]: Upload citeseer dataset.
+> | # of train set : 120
+> | # of validation set : 500
+> | # of test set : 1000
 ```
 
 Pre-processing 의 두 번째 단계로, graph에 존재하는 isolated node를 검사해야 합니다.
@@ -86,10 +93,25 @@ $ python preprocess_planetoid.py --dataset citeseer --mode isolate
 > Isolated Nodes : [2407, 2489, 2553, 2682, 2781, 2953, 3042, 3063, 3212, 3214, 3250, 3292, 3305, 3306, 3309]
 ```
 
-세 개의 dataset 중, citeseer 데이터셋에 다음과 같은 isolated node를 발견할 수 있습니다.
+세 개의 dataset 중, citeseer 데이터셋의 test 데이터에 다음과 같은 isolated node를 발견할 수 있습니다.
+
+### Normalize
 
 ```bash
-$ python preprocess_citeseer.py
+$ python preprocess_planetoid.py --dataset [:dataset] --mode normalize
 ```
+
+## Pitfall
+
+기존 논문 저자의 [repository](https://github.com/kimiyoung/planetoid) 에 공개된 데이터에는, 몇 가지 문제가 있습니다.
+
+- 중복된 edge 의 존재 (한 노드가 다른 노드를 두 번 이상 reference)
+- self citation의 존재 (self citation을 고려할지 그렇지 않을지에 대한 정의를 명확히 해야할 것 같습니다. 본 논문에서 제시된 edge 개수를 맞추려면 self citation을 고려해야하므로, 본 튜토리얼에서도 똑같이 적용하였습니다.)
+
+| dataset | classes | nodes | # of redundant | # of self citation | reported edge | actual edge |
+|:-------:|:-------:|:-----:|:--------------:|:------------------:|:-------------:|:-----------:|
+| citeseer| 6       | 3,327 | 232            | 124                | 4,732         | 4,676       |
+| cora    | 7       | 2,708 | 302            | 0                  | 5,429         | 5,278       |
+| pubmed  | 3       | 19,717| 25             | 3                  | 44,338        | 44,327      |
 
 기존의 구현은 [링크](https://github.com/kimiyoung/planetoid)의 repository에서 볼 수 있습니다.
