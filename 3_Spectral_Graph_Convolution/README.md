@@ -56,7 +56,7 @@ Graph Convolutional Networks의 목표는, G=(V, E) (여기서, V는 Vertex, 즉
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?H%5E%7B%28l&plus;1%29%7D%3Df%28H%5El%2C%20A%29"></p>
 
-***f***함수를 어떻게 결정하고 parameter화 시키냐에 따라 ![H(0)](http://latex.codecogs.com/gif.latex?H%5E%7B%280%29%7D%3DX) 와 ![H(L)](http://latex.codecogs.com/gif.latex?H%5E%7B%28L%29%7D%3DZ), 로부터 원하는 특정 모델을 구상할 수 있게 됩니다.
+***f*** 함수를 어떻게 결정하고 parameter화 시키냐에 따라 ![H(0)](http://latex.codecogs.com/gif.latex?H%5E%7B%280%29%7D%3DX) 와 ![H(L)](http://latex.codecogs.com/gif.latex?H%5E%7B%28L%29%7D%3DZ), 로부터 원하는 특정 모델을 구상할 수 있게 됩니다.
 
 이번 튜토리얼에서 사용할 GCN 구조는 아래와 같습니다.
 
@@ -74,7 +74,7 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 
 따라서, 우리는 이전에 기술한 것과 마찬가지로 ***A*** 의 모든 열의 합이 1 이 될 수 있도록 row-wise normalize를 feature와 adjacency matrix에 각각 진행합니다.
 
-이는 random walk 방식으로는 ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA)이 되며, 원 논문에서 사용한 방식으로는 ![row_norm](./figures/adj_norm.png)가 됩니다.
+이는 random walk 방식으로는 ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA)이 되며, 원 논문에서 사용한 방식으로는 ![row_norm](./imgs/norm_adj.png)가 됩니다.
 
 각 단계의 계산과정이 코드 상에 어디에 해당하는지는 [gcn.py](./gcn.py) 코드 내에 주석으로 삽입하였습니다.
 
