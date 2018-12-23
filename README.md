@@ -87,7 +87,26 @@ $ docker pull bumsoo-graph-tutorial
 $ docker run -it nvidia/cuda:9.0-devel-ubuntu16.04 /bin/bash
 ```
 
-## References
+## How to RUN?
+
+```bash
+$ nvidia-docker run -it bumsoo /bin/bash
+
+# bin/bash 실행 후
+> cd [:단원]
+> python [:파일명]
+
+# 예제
+> cd 2_Understanding_Graphs/
+> python preprocess_planetoid.py --dataset cora --step normalize --mode pitfall
+```
+
+```bash
+$ nvidia-docker run -it bumsoo python [:단원]/[:파일].py
+
+# Example
+$ nvidia-docker run -it bumsoo python preprocess_planetoid.py --dataset cora --step normalize --mode pitfall
+```
 
 ## Author
 Bumsoo Kim, [@meliketoy](https://github.com/meliketoy)

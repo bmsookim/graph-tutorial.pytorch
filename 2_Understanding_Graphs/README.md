@@ -70,10 +70,10 @@ Pre-processing 의 첫 번째 단게로, train / val / test split 을 해야합�
 validation set 은 따로 지정되있지 않으므로, 500개로 설정하여 실험을 진행합니다.
 
 ```bash
-$ python preprocess_planetoid.py --dataset [:dataset] --mode split
+$ python preprocess_planetoid.py --dataset [:dataset] --step split
 
 # Citeseer example
-$ python preprocess_planetoid.py --dataset citeseer --mode split
+$ python preprocess_planetoid.py --dataset citeseer --step split
 > [STEP 1]: Upload citeseer dataset.
 > | # of train set : 120
 > | # of validation set : 500
