@@ -23,14 +23,14 @@
 
 CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대한 data-augmentation을 수행한다.
 
-Equivarance
+#### Equivarance
 
 - [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
 - [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf)
 
 좋은 참고 자료 : [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
 
-## 기존의 CNN이 효과적으로 적용되는 이유 
+#### Invariance
 
 ```bash
 Spectral Networks and Deep Locally Connected Networks on Graphs
@@ -74,13 +74,17 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 
 따라서, 우리는 이전에 기술한 것과 마찬가지로 ***A*** 의 모든 열의 합이 1 이 될 수 있도록 row-wise normalize를 feature와 adjacency matrix에 각각 진행합니다.
 
-이는 random walk 방식으로는 ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA)이 되며, 원 논문에서 사용한 방식으로는 ![row_norm](./imgs/norm_adj.png)가 됩니다.
+이는 random walk 방식으로는 ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA)이 되며, 원 논문에서 사용한 방식으로는
+
+<p align="center"><img src="./imgs/norm_adj"></p>
+
+가 됩니다.
 
 각 단계의 계산과정이 코드 상에 어디에 해당하는지는 [gcn.py](./gcn.py) 코드 내에 주석으로 삽입하였습니다.
 
 **최종 구현 :**
 
-위의 모든 구현 이론을 종합하여 [Kipf & Welling](http://arxiv.org/abs/1609.02907) (ICLR 2017) 논문에서 소개한 Graph Convolutional Neural Network 를 구현하였습니다..
+위의 모든 구현 이론을 종합하여 [Kipf & Welling](http://arxiv.org/abs/1609.02907) (ICLR 2017) 논문에서 소개한 Graph Convolutional Neural Network 를 구현하였습니다.
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%5E%7B%28l%29%7D%2CA%29%3D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D%5Chat%7BA%7D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D"></p>
 
