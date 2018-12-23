@@ -4,40 +4,10 @@
 - Grid structure
 - Translational Equivalance/Invariance
 
-Translational한 구조의 데이터는 weight sharing을 가능하게 만들며, Grid based metric은 input 크기와 무관하게 적은 parameter의 개수로 이를 학습하는 것을 가능하게 만듭니다.
+위의 두 조건이 충족되지 않는 Non-Euclidean data에 대해서 학습하는 첫 번째 방법은, 이를 Spectral domain 으로 옮기는 접근법입니다.
 
-### 'Translational Equivarance/Invariance'란?
-
-참고자료 : [equivarance vs invariance 참고자료 1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
-[equivariance vs invariance 참고자료 2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
-
-이미지 I 가 (x,y) 에서 가장 중요한 classifier feature인 최대값 m 을 가진다고 가정하자. 이 때, classifier의 가장 흥미로운 특징 중 하나는, 이미지를 왜곡한 distorted image I' 에서도 마찬가지로 classification이 된다는 점입니다.
-
-예를 들어, 모든 벡터에 대해 translation (u,v)를 적용한다고 했을 때, translation된 새로운 이미지 I'의 최대값 m' 는 m과 동일하며, 최대값이 나타나는 자리 (x', y')는 (x-u, y-v)로 distortion에 대해 "equally" 변화한다는 것을 의미합니다.
-
-
-| 용어 | 공식 | 설명 | 
-|:---|:-----------------------|:---|
-| Translational Equivalance | (x',y') = (x-u, y-v) | 변형에도 불구하고 같은 feature로 mapping 된다. |
-| Translational Invariance | m' = m | 이미지에서의 변형식은 feature에서의 변형식과 대응된다. |
-
-예를 들어, 우리가 흔히 사용하는 2D convnet은, translation에 대해서는 equivalent하나, rotation에 대해서는 equivalent하지 않습니다.
-
-### Invariance
-
-CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대한 data-augmentation을 수행합니다.
-
-#### Equivarance
-
-- [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
-- [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf), [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
-
-그렇다면, 위의 두 조건이 충족되지 않는 Non-Euclidean data에 대해서는 어떻게 학습을 할 수 있을까요?
-
-대표적으로 두 가지의 접근법이 있어왔는데, 한가지는 Spatial한 접근법이고, 한 가지는 Spectral한 접근법입니다.
-
-- Spatial 접근 : [Spectral Networks and Deep Locally Connected Networks on Graphs](https://arxiv.org/pdf/1312.6203.pdf)
-- Spectral 접근 : [Spectral CNN](http://www.cs.yale.edu/homes/spielman/561/)
+- [Spectral CNN](http://www.cs.yale.edu/homes/spielman/561/)
+- [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/pdf/1609.02907.pdf)
 
 ## Graph Convolutional Networks
 

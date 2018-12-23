@@ -76,11 +76,14 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 
 예를 들어, 우리가 흔히 사용하는 2D convnet은, translation에 대해서는 equivalent하나, rotation에 대해서는 equivalent하지 않습니다.
 
+참고자료 : [equivarance vs invariance 참고자료 1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
+[equivariance vs invariance 참고자료 2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
+
 ### Invariance
 
 CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대한 data-augmentation을 수행합니다.
 
-#### Equivarance
+### Equivarance
 
 - [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
 - [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf), [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
@@ -102,14 +105,11 @@ CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대
 
 ### 'Translational Equivarance/Invariance'란?
 
-참고자료 : [equivarance vs invariance 참고자료 1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
-[equivariance vs invariance 참고자료 2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
-
 또한, 그리드로 정의되어 있지 않는 데이터 역시 spatial domain에서 처리하고자 하는 시도들이 존재한다.
 
 대표적인 것으로 [Graph Attention Network](https://arxiv.org/pdf/1710.10903.pdf) 를 들 수 있습니다.
 
-더 자세한 내용은 [4_Spatial_Graph_Convolution]에서 다루겠습니다.
+더 자세한 내용은 [4_Spatial_Graph_Convolution](../4_Spatial_Graph_Convolution)에서 다루겠습니다.
 
 ## 2.2 Spectral Domain
 
