@@ -52,7 +52,7 @@ Graph Convolutional Networks의 목표는, G=(V, E) (여기서, V는 Vertex, 즉
 **Output**
 - N x F 차원의 feature 매트릭스 (N : Number of nodes, F : number of output features)
 
-각 뉴럴 네트워크의 계층은 이런 input을 ReLU 혹은 pooling 등의 non-linear function ***f***를 적용합니다.
+각 뉴럴 네트워크의 계층은 이런 input을 ReLU 혹은 pooling 등의 non-linear function ***f*** 를 적용합니다.
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?H%5E%7B%28l&plus;1%29%7D%3Df%28H%5El%2C%20A%29"></p>
 
@@ -66,13 +66,13 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%28l%29%2CA%29%3DReLU%28AH%28l%29W%28l%29%29"></p>
 
-***A***와의 곱은 각 노드에 대해 자기 자신을 제외한(self connection이 존재하지 않는다는 가정 하에) 모든 인접 노드의 feature vector를 합하는 것을 의미합니다.
+***A*** 와의 곱은 각 노드에 대해 자기 자신을 제외한(self connection이 존재하지 않는다는 가정 하에) 모든 인접 노드의 feature vector를 합하는 것을 의미합니다.
 
-이와 같은 방식에선, 스스로의 feature 값을 참조할 수 없으므로, 이를 해결하기 위하여 ***A***를 사용하는 대신 ***A+I*** (A_hat) 을 사용하여 계산합니다.
+이와 같은 방식에선, 스스로의 feature 값을 참조할 수 없으므로, 이를 해결하기 위하여 ***A*** 를 사용하는 대신 ***A+I*** (A_hat) 을 사용하여 계산합니다.
 
-***A***는 일반적으로 normalize가 되어있지 않은 상태이므로, ***A***와의 곱은 각 feature vector의 scale을 완전히 바꿔놓을 수 있게 됩니다.
+***A*** 는 일반적으로 normalize가 되어있지 않은 상태이므로, ***A*** 와의 곱은 각 feature vector의 scale을 완전히 바꿔놓을 수 있게 됩니다.
 
-따라서, 우리는 이전에 기술한 것과 마찬가지로 ***A***의 모든 열의 합이 1 이 될 수 있도록 row-wise normalize를 feature와 adjacency matrix에 각각 진행합니다.
+따라서, 우리는 이전에 기술한 것과 마찬가지로 ***A*** 의 모든 열의 합이 1 이 될 수 있도록 row-wise normalize를 feature와 adjacency matrix에 각각 진행합니다.
 
 이는 random walk 방식으로는 ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA)이 되며, 원 논문에서 사용한 방식으로는 ![row_norm](./figures/adj_norm.png)가 됩니다.
 
