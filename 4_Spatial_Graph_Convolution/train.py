@@ -1,12 +1,12 @@
 # ************************************************************
 # Author : Bumsoo Kim, 2018
-# Github : https://github.com/meliketoy/graph-cnn.pytorch
+# Github : https://github.com/meliketoy/graph-tutorial.pytorch
 #
 # Korea University, Data-Mining Lab
 # Graph Convolutional Neural Network
 #
 # Description : train.py
-# The main code for training classification networks.
+# The main code for training Graph Attention Networks.
 # ***********************************************************
 
 import time
@@ -52,10 +52,11 @@ if use_gpu:
 
 model, optimizer = None, None
 best_acc = 0
+early_stop = 0
 
 # Define the model and optimizer
 if (opt.model == 'attention'):
-    print("| Constructing Attention GCN model...")
+    print("| Constructing Graph Attention Network model...")
     model = GAT(
             nfeat = features.shape[1],
             nhid = opt.num_hidden,
@@ -98,19 +99,17 @@ save_point = os.path.join('./checkpoint', opt.dataset)
 if not os.path.isdir(save_point):
     os.mkdir(save_point)
 
-def lr_scheduler(epoch, opt):
-    return opt.lr * (0.5 ** (epoch / opt.lr_decay_epoch))
-
 # Train
 def train(epoch):
-    global best_acc
+    global best_acc, early_stop
 
     t = time.time()
     model.train()
-    optimizer.lr = lr_scheduler(epoch, opt)
+    optimizer.lr = opt.lr
     optimizer.zero_grad()
 
     output = model(features, adj)
+
     loss_train = F.nll_loss(output[idx_train], labels[idx_train])
     acc_train = accuracy(output[idx_train], labels[idx_train])
 
@@ -132,13 +131,19 @@ def train(epoch):
         }
 
         torch.save(state, os.path.join(save_point, '%s.t7' %(opt.model)))
+        early_stop = 0
+    else:
+        early_stop += 1
+
+        if (early_stop > 100):
+            return True
 
     sys.stdout.flush()
     sys.stdout.write('\r')
     sys.stdout.write("=> Training Epoch #{} : lr = {:.4f}".format(epoch, optimizer.lr))
     sys.stdout.write(" | Training acc : {:6.2f}%".format(acc_train.data.cpu().numpy() * 100))
     sys.stdout.write(" | Best acc : {:.2f}%". format(best_acc.data.cpu().numpy() * 100))
-
+    return False
 
 # Main code for training
 if __name__ == "__main__":
@@ -150,5 +155,8 @@ if __name__ == "__main__":
     # Training
     print("\n[STEP 3] : Training")
     for epoch in range(1, opt.epoch+1):
-        train(epoch)
+        stopped = train(epoch)
+        if (stopped):
+            break
+
     print("\n=> Training finished!")
