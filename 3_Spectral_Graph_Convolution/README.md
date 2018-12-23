@@ -113,7 +113,11 @@ Edge에도 여러가지 type이 존재하기 때문입니다.
 ![benz](./imgs/benz.png)
 
 ```bash
+# docker run -it bumsoo /bin/bash 실행된 환경
 $ python forward_mol.py
+
+# docker 외부 실행환경
+$ docker run -it bumsoo python 3_Spectral_Graph_Convolution/forward_mol.py
 ```
 
 ## Train Planetoid Network

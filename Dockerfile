@@ -13,4 +13,5 @@ RUN git clone https://github.com/kimiyoung/planetoid.git
 RUN mkdir ../Data
 RUN mv ./planetoid/data ../Data/Planetoid/
 RUN rm -rf planetoid
-RUN conda install -c rdkit rdkit
+RUN conda install -y -c rdkit rdkit
+RUN conda install -y -c rdkit nox

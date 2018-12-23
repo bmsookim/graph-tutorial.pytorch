@@ -12,9 +12,10 @@ Euclidean 공간(혹은 Euclidean Geometry)란, 수학적으로 [유클리드]()
 넓은 의미에서 유클리드 공간은, [그리드(Grid)]()로 표현이 가능한 모든 공간을 일컫는다.
 이 때 그리드(Grid)는, 시간과 공간적 개념을 모두 포함하며, 대표적인 예시로는 '2D 이미지', '3D Voxel', '음성' 데이터 등이 있다.
 
-[:2D 이미지]
-[:3D Voxel]
-[:음성]
+| <img width ="300" src="./figures/2d.jpg"> | <img width="250" src="./figures/voxel.jpg"> | <img width="250" src="./figures/voice.jpg"> |
+|:---:|:---:|:---:|
+| **2D 이미지** | **3D Voxel** | **음성** |
+
 
 ## 1.2 Non Euclidean 공간이란?
 
@@ -76,8 +77,8 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 
 예를 들어, 우리가 흔히 사용하는 2D convnet은, translation에 대해서는 equivalent하나, rotation에 대해서는 equivalent하지 않습니다.
 
-참고자료 : [equivarance vs invariance 참고자료 1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
-[equivariance vs invariance 참고자료 2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
+참고자료 : [참고자료1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
+[참고자료2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
 
 ### Invariance
 
