@@ -113,19 +113,34 @@ Edge에도 여러가지 type이 존재하기 때문입니다.
 
 이런 경우에는, 일반적으로 Aggregation 이라는 방법을 통해 데이터를 처리합니다. [reference](https://arxiv.org/pdf/1806.02473.pdf)
 
+아래의 코드는, 튜토리얼 내에서 지정한 임의의 pid를 가진 molecule vector를 [RDkit](https://www.rdkit.org/)을 통해 graph 형태로 표현한 뒤, 이를 GCN forward path 에 대입하여 100차원의 feature vector를 생성하는 과정입니다.
+
 ```bash
 $ python molecule_gcn.py
 ```
 
-위의 코드는, 튜토리얼 내에서 지정한 임의의 pid를 가진 molecule vector를 [RDkit](https://www.rdkit.org/)을 통해 graph 형태로 표현한 뒤, 이를 GCN forward path 에 대입하여 100차원의 feature vector를 생성하는 과정입니다.
-
 ## Train Planetoid Network
+
+| dataset | classes | nodes | # of  edge  |
+|:-------:|:-------:|:-----:|:-----------:|
+| citeseer| 6       | 3,327 | 4,676       |
+| cora    | 7       | 2,708 | 5,278       |
+| pubmed  | 3       | 19,717| 44,327      |
+
+
+이번에는, [2_Understanding_Graphs](../2_Understanding_Graphs) 에서 다루었던 Planetoid의 데이터셋에 대해 학습을 해보겠습니다.
+
+Planetoid는 node classification task 이며, document에 해당하는 각 노드가 주어진
+
+k 개의 class 중 어느 class 에 해당하는지 classification을 하면 되는 문제입니다.
 
 아래의 script를 실행시키면, 원하시는 데이터셋에 GCN 을 학습시키실 수 있습니다.
 
 [2_Understanding_Graphs](../2_Understanding_Graphs) 에서 설명한 것과 같이 Planetoid 데이터셋을 다운로드 받으신 후, [:dir to dataset] 에 대입하여 실행하시면 됩니다.
 
 기본 default 설정은 2_Understanding_Graphs 의 /home/[:user]/Data/Planetoid 디렉토리로 설정되어 있습니다.
+
+이전 2번 튜토리얼 레포에서 보셨던 데이터의 전처리에 관한 사항은, [utils.py](utils.py) 에서 확인해보실 수 있습니다.
 
 ```bash
 python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
