@@ -57,18 +57,68 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 
 # Spatial vs Spectral
 
+기존에 다루던 Euclidean data (이미지, 음향 등)에서는 두 가지 특징이 성립했습니다.
+
+- Grid structure
+- Translational Equivalance/Invariance
+
+예를 들어, 이미지 처리의 경우를 살펴봅시다.
+
+이미지 I 가 (x,y) 에서 가장 중요한 classifier feature인 최대값 m 을 가진다고 가정합시다. 이 때, classifier의 가장 흥미로운 특징 중 하나는, 이미지를 왜곡한 distorted image I' 에서도 마찬가지로 classification이 된다는 점입니다.
+
+예를 들어, 모든 벡터에 대해 translation (u,v)를 적용한다고 했을 때, translation된 새로운 이미지 I'의 최대값 m' 는 m과 동일하며, 최대값이 나타나는 자리 (x', y')는 (x-u, y-v)로 distortion에 대해 "equally" 변화한다는 것을 의미합니다.
+
+
+| 용어 | 공식 | 설명 | 
+|:---|:-----------------------|:---|
+| Translational Equivalance | (x',y') = (x-u, y-v) | 변형에도 불구하고 같은 feature로 mapping 된다. |
+| Translational Invariance | m' = m | 이미지에서의 변형식은 feature에서의 변형식과 대응된다. |
+
+예를 들어, 우리가 흔히 사용하는 2D convnet은, translation에 대해서는 equivalent하나, rotation에 대해서는 equivalent하지 않습니다.
+
+### Invariance
+
+CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대한 data-augmentation을 수행합니다.
+
+#### Equivarance
+
+- [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
+- [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf), [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
+
+이런 기법들을 이용하여, 우리는 Translational한 구조의 데이터로부터 weight sharing을 가능하게 만들며, Grid based metric은 input 크기와 무관하게 적은 parameter의 개수로 이를 학습하는 것을 가능하게 만드는 CNN을 효과적으로 적용하여 학습시켜왔습니다.
+
+그렇다면, 위의 두 조건이 충족되지 않는 Non-Euclidean data에 대해서는 어떻게 학습을 할 수 있을까요?
+
+대표적으로 두 가지의 접근법이 있어왔는데, 한가지는 Spatial한 접근법이고, 한 가지는 Spectral한 접근법입니다.
+
+- Spatial 접근 예시 : [Spectral Networks and Deep Locally Connected Networks on Graphs](https://arxiv.org/pdf/1312.6203.pdf)
+- Spectral 접근 예시 : [Spectral CNN](http://www.cs.yale.edu/homes/spielman/561/)
+
 ## 2.1 Spacial Domain
 
-기존에 알고 있던 그리드로 표현할 수 있는 데이터들은 대부분 Spacial Domain 에서 처리가 가능하다.
+기존에 알고 있던 그리드로 표현할 수 있는 데이터들은 대부분 Spacial Domain 에서 처리가 가능합니다.
 
-그러나, Graph와 같이 grid 로 표현할 수 없는 데이터들을 처리하기 위하여 고안되었다.
+대표적인 Spatial Domain에서의 처리는 이미지 인식에 이미 널리 알려진 Convolutional Neural Network가 존재합니다.
 
-대표적인 Spatial Domain에서의 처리는 이미지 인식에 이미 널리 알려진 Convolutional Neural Network가 존재한다.
+### 'Translational Equivarance/Invariance'란?
+
+참고자료 : [equivarance vs invariance 참고자료 1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
+[equivariance vs invariance 참고자료 2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
 
 또한, 그리드로 정의되어 있지 않는 데이터 역시 spatial domain에서 처리하고자 하는 시도들이 존재한다.
+
+대표적인 것으로 [Graph Attention Network](https://arxiv.org/pdf/1710.10903.pdf) 를 들 수 있습니다.
+
+더 자세한 내용은 [4_Spatial_Graph_Convolution]에서 다루겠습니다.
 
 ## 2.2 Spectral Domain
 
 Spatial Domain 내에서 일정한 grid 를 가지지 않아 처리하기가 복잡한 데이터를 다루는 방법 중의 하나는 이를 spectral domain으로 사영시키는 것이다.
 
 이는 Fourier Transformation 을 통해 이루어진다.
+
+그래프 구조에서는, Laplacian 변환을 통해 spectral space의 basis를 구하며, normalization과 결합하여 아래와 같은 형태로 표현되게 됩니다.
+
+<p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%5E%7B%28l%29%7D%2CA%29%3D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D%5Chat%7BA%7D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D"></p>
+
+더 자세한 내용은 [3_Spectral_Graph_Convolution](../3_Spectral_Graph_Convolution) 에서 다루겠습니다.
