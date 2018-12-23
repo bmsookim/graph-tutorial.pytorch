@@ -53,6 +53,23 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 
 가 됩니다.
 
+이를 [코드](utils.py)에서 살펴보면 
+
+```bash
+# line 107
+adj = normalize_sparse_adj(adj + sp.eye(adj.shape[0])) # pass (A+I) (or A_hat)
+
+# line 42
+def normalize_sparse_adj(mx):
+    """Laplacian Normalization"""
+    rowsum = np.array(mx.sum(1)) # D_hat
+    r_inv_sqrt = np.power(rowsum, -0.5).flatten() # D_hat^(-1/2)
+    r_inv_sqrt[np.isinf(r_inv_sqrt)] = 0.
+    r_mat_inv_sqrt = sp.diags(r_inv_sqrt)
+
+    return mx.dot(r_mat_inv_sqrt).transpose().dot(r_mat_inv_sqrt).tocoo() # D_hat^(-1/2) x A_hat x D_hat^(-1/2)
+```
+
 각 단계의 계산과정이 코드 상에 어디에 해당하는지는 [gcn.py](./gcn.py) 코드 내에 주석으로 삽입하였습니다.
 
 **최종 구현 :**

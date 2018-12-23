@@ -39,6 +39,7 @@ class GraphAttention(nn.Module):
         attention = F.dropout(attention, self.dropout, training=self.training)
         h_prime = torch.matmul(attention, h)
 
+        # concat / avg
         if self.concat:
             return F.elu(h_prime)
         else:
