@@ -79,15 +79,17 @@ def normalize_sparse_adj(mx):
 
 ## Molecule Structure Processing
 
-<p align="center"><img width="40%" src="./imgs/structure.png"></p>
-
 Graph Structure 데이터의 가장 대표적인 예로는, 분자 구조가 존재할 수 있습니다.
 
 이전 neural network 구조에서는, 분자 구조를 사용할 때는 ECFP (Extended Connectivity FingerPrint)를 사용하여 고정된 형식의 벡터 표현식을 이용해왔습니다. [예시자료](https://arxiv.org/pdf/1811.09714.pdf)
 
+<p align="left"><img width="40%" src="./imgs/ecfp.png"></p>
+
 그러나, 이는 Graph 단위에서 특정 요소가 존재하는지의 여부에 대한 표현식이므로, 분명한 한계가 존재할 수 밖에 없습니다.
 
 이와 같은 그래프 형태의, non-Euclidean graph 데이터의 구조를 Graph Convolution network를 통하여 학습할 수 있습니다.
+
+<p align="left"><img width="40%" src="./imgs/structure.png"></p>
 
 본 튜토리얼에서는 이를 처리하여 고정된 형식의 벡터를 만드는 forward path를 소개하며, 이후 이를 활용하는 것은
 
