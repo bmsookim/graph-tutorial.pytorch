@@ -1,13 +1,12 @@
 # Spectral Graph Convolutional Networks
 
-## 기존의 CNN이 효과적으로 적용되던 조건
+기존의 Euclidean data 에서, Spatial CNN은 다음과 같은 조건 아래에서 뛰어난 성능을 보였습니다.
+
 - Grid structure
 - Translational Equivalance/Invariance
 
-위의 두 조건이 충족되지 않는 Non-Euclidean data에 대해서 학습하는 첫 번째 방법은, 이를 Spectral domain 으로 옮기는 접근법입니다.
-
-- [Spectral CNN](http://www.cs.yale.edu/homes/spielman/561/)
-- [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/pdf/1609.02907.pdf)
+그러나, Spatial CNN은 위의 두 조건이 충족되지 않는 Non-Euclidean data에 대해서 학습이 어렵다는 한계점을 지니고 있습니다.
+이를 해결하기 위한 첫 번째 방법은, Spatial domain에서 Spectral domain 으로 옮기는 접근법입니다. [Spectral CNN](http://www.cs.yale.edu/homes/spielman/561/), [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/pdf/1609.02907.pdf)
 
 ## Graph Convolutional Networks
 
@@ -80,7 +79,7 @@ def normalize_sparse_adj(mx):
 
 ## Molecule Structure Processing
 
-<p align="center"><img src="./imgs/structure.png"></p>
+<p align="center"><img width="40%" src="./imgs/structure.png"></p>
 
 Graph Structure 데이터의 가장 대표적인 예로는, 분자 구조가 존재할 수 있습니다.
 
