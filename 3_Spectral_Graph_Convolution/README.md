@@ -24,10 +24,11 @@
 CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대한 data-augmentation을 수행한다.
 
 Equivarance
-- Group Convnet
 
+- [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
+- [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf)
 
-- Capsule Net
+좋은 참고 자료 : [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
 
 ## 기존의 CNN이 효과적으로 적용되는 이유 
 
@@ -36,91 +37,81 @@ Spectral Networks and Deep Locally Connected Networks on Graphs
 ```
 
 ## Graph Convolutional Networks
-Many important real-world datasets come in the form of graphs or networks: social networks, knowledge graphs, protein-interaction networks, the World Wide Web, etc. In this repository, we introduce a basic tutorial for generalizing neural netowrks to work on arbitrarily structured graphs, along with Graph Attention Convolutional Networks([Attention GCN](https://arxiv.org/abs/1710.10903)).
 
-Currently, most graph neural network models have a somewhat universal architecture in common. They are referred as Graph Convoutional Networks(GCNs) since filter parameters are typically shared over all locations in the graph.
+Social Networks, Knowledge Graphs, Protein interaction networks, World Wide Web 등, 우리 주변의 많은 데이터들은 그래 프 구조를 지니고 있습니다.
+대부분의 Graph Neural Network 모델들은 공통된 구조를 가지고 있고, 그래프의 모든 위치에 대해 공유된 필터를 사용한다는 점에 착안하여 CNN(Convolutional Neural Network)와 마찬가지로 이를 GCN(Graph Convolutional Networks)라고 합니다.
 
 <p align="center"><img width="80%" src="./imgs/gcn_web.png"></p>
 
-For these models, the goal is to learn a function of signals/features on a graph G=(V, E), which takes as 
+Graph Convolutional Networks의 목표는, G=(V, E) (여기서, V는 Vertex, 즉 노드의 표현형이며, E는 Edge, 각 변 혹은 엣지의 표현형입니다.)로 표현되는 그래프 데이터에서 특정 시그널이나 feature를 잡는 함수를 학습하는 것입니다.
 
 **Input**
-- N x D feature matrix (N : Number of nodes, D : number of input features)
-- representative description of the graph structure in matrix form; typically in the form of adjacency matrix A
+- N x D 차원의 feature vector (N : Number of nodes, D : number of input features)
+- Graph의 구조를 반영할 수 있는 매트릭스 형태의 표현식; 일반적으로 adjacency matrix A 를 사용합니다.
 
 **Output**
-- N x F feature matrix (N : Number of nodes, F : number of output features)
+- N x F 차원의 feature 매트릭스 (N : Number of nodes, F : number of output features)
 
-Graph-level outputs can be modeled by introducing some form of pooling operation.
-
-Every neural network layer can then be written as a non-linear function
+각 뉴럴 네트워크의 계층은 이런 input을 ReLU 혹은 pooling 등의 non-linear function ***f***를 적용합니다.
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?H%5E%7B%28l&plus;1%29%7D%3Df%28H%5El%2C%20A%29"></p>
 
-with ![H(0)](http://latex.codecogs.com/gif.latex?H%5E%7B%280%29%7D%3DX) and ![H(L)](http://latex.codecogs.com/gif.latex?H%5E%7B%28L%29%7D%3DZ), where ***L*** is the number of layers. The specific models then differ only in how function ***f*** is chosen and parameterized.
+***f***함수를 어떻게 결정하고 parameter화 시키냐에 따라 ![H(0)](http://latex.codecogs.com/gif.latex?H%5E%7B%280%29%7D%3DX) 와 ![H(L)](http://latex.codecogs.com/gif.latex?H%5E%7B%28L%29%7D%3DZ), 로부터 원하는 특정 모델을 구상할 수 있게 됩니다.
 
-In this repo, the layer-wise propagation is consisted as
+이번 튜토리얼에서 사용할 GCN 구조는 아래와 같습니다.
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%28l%29%2CA%29%3D%5Csigma%28AH%28l%29W%28l%29%29"></p>
 
-As the activation function is a non-linear ReLU (Rectified Linear Unit), this becomes
+Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용하며, 이를 통해 아래의 식을 도출할 수 있습니다.
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%28l%29%2CA%29%3DReLU%28AH%28l%29W%28l%29%29"></p>
 
-**Implementation detail #1 :**
+***A***와의 곱은 각 노드에 대해 자기 자신을 제외한(self connection이 존재하지 않는다는 가정 하에) 모든 인접 노드의 feature vector를 합하는 것을 의미합니다.
 
-Multiplication with ***A*** means that, for every node, we sum up all the feature vectors of all neighboring nodes but not the node itself. To address this, we add the identity matrix to ***A***.
+이와 같은 방식에선, 스스로의 feature 값을 참조할 수 없으므로, 이를 해결하기 위하여 ***A***를 사용하는 대신 ***A+I*** (A_hat) 을 사용하여 계산합니다.
 
-**Implementation detail #2 :**
+***A***는 일반적으로 normalize가 되어있지 않은 상태이므로, ***A***와의 곱은 각 feature vector의 scale을 완전히 바꿔놓을 수 있게 됩니다.
 
-***A*** is typically not normalized and therfore the multiplication and therefore the multiplication with ***A*** will completely change the scale of the feature vectors. Normalizing A such that all rows sum to one, i.e. ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA).
+따라서, 우리는 이전에 기술한 것과 마찬가지로 ***A***의 모든 열의 합이 1 이 될 수 있도록 row-wise normalize를 feature와 adjacency matrix에 각각 진행합니다.
 
+이는 random walk 방식으로는 ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA)이 되며, 원 논문에서 사용한 방식으로는 ![row_norm](./figures/adj_norm.png)가 됩니다.
 
-**Final Implementation :**
+각 단계의 계산과정이 코드 상에 어디에 해당하는지는 [gcn.py](./gcn.py) 코드 내에 주석으로 삽입하였습니다.
 
-Combining the two implementation details above gives us a final propagation rule introduced in [Kipf & Welling](http://arxiv.org/abs/1609.02907) (ICLR 2017).
+**최종 구현 :**
+
+위의 모든 구현 이론을 종합하여 [Kipf & Welling](http://arxiv.org/abs/1609.02907) (ICLR 2017) 논문에서 소개한 Graph Convolutional Neural Network 를 구현하였습니다..
 
 <p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%5E%7B%28l%29%7D%2CA%29%3D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D%5Chat%7BA%7D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D"></p>
 
-For more details, see [here](https://tkipf.github.io/graph-convolutional-networks/).
-
-## Requirements
-See the [installation instruction](INSTALL.md) for a step-by-step installation guide.
-See the [server instruction](SERVER.md) for server settup.
-- Install [cuda-8.0](https://developer.nvidia.com/cuda-downloads)
-- Install [cudnn v5.1](https://developer.nvidia.com/cudnn)
-- Download [Pytorch for python-2.7](https://pytorch.org) and clone the repository.
-- Install python package 'networkx'
-
-```bash
-pip install http://download.pytorch.org/whl/cu80/torch-0.1.12.post2-cp27-none-linux_x86_64.whl
-pip install torchvision
-git clone https://github.com/meliketoy/graph-cnn.pytorch
-pip install networkx
-```
+더 많은 세부 정보를 위해서는, [여기](https://tkipf.github.io/graph-convolutional-networks/)를 참조하시면 좋을 것 같습니다.
 
 ## Train network
-After you have cloned the repository, you can train the dataset by running the script below.
 
-Download the planetoid datset above and give the [:dir to dataset] the directory to the downloaded datset.
+아래의 script를 실행시키면, 원하시는 데이터셋에 GCN 을 학습시키실 수 있습니다.
+
+[2_Understanding_Graphs](../2_Understanding_Graphs) 에서 설명한 것과 같이 Planetoid 데이터셋을 다운로드 받으신 후, [:dir to dataset] 에 대입하여 실행하시면 됩니다.
+
+기본 default 설정은 2_Understanding_Graphs 의 /home/[:user]/Data/Planetoid 디렉토리로 설정되어 있습니다.
 
 ```bash
-python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed] --model [:basic|drop_in]
+python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
 ```
 
 ## Test (Inference) various networks
-After you have finished training, you can test out your network by
+
+Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 학습된 weight를 테스트셋에 적용해보실 수 있습니다.
 
 ```bash
-python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed] --model [:basic|drop_in]
+python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
 ```
 
 ## Result
+
+최종 성능은 다음과 같습니다. GCN (recon) 이 본 repository의 코드로 학습 후, test data 에 적용한 결과입니다.
 
 | Method      | Citeseer | Cora | Pubmed |
 |:------------|:---------|:-----|:-------|
 | GCN (rand)  | 67.9     | 80.1 | 78.9   |
 | GCN (paper) | 70.3     | 81.5 | 79.0   |
 | GCN (recon) | 70.6     | 80.9 | 80.8   |
-
-Enjoy :-)
