@@ -86,7 +86,40 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 
 더 많은 세부 정보를 위해서는, [여기](https://tkipf.github.io/graph-convolutional-networks/)를 참조하시면 좋을 것 같습니다.
 
-## Train network
+## Molecule Structure Processing
+
+<p align="center"><img src="./imgs/caffeine.png"></p>
+
+Graph Structure 데이터의 가장 대표적인 예로는, 분자 구조가 존재할 수 있습니다.
+
+이전 neural network 구조에서는, 분자 구조를 사용할 때는 ECFP (Extended Connectivity FingerPrint)를 사용하여 고정된 형식의 벡터 표현식을 이용해왔습니다. [예시자료](https://arxiv.org/pdf/1811.09714.pdf)
+
+그러나, 이는 Graph 단위에서 특정 요소가 존재하는지의 여부에 대한 표현식이므로, 분명한 한계가 존재할 수 밖에 없습니다.
+
+이와 같은 그래프 형태의, non-Euclidean graph 데이터의 구조를 Graph Convolution network를 통하여 학습할 수 있습니다.
+
+본 튜토리얼에서는 이를 처리하여 고정된 형식의 벡터를 만드는 forward path를 소개하며, 이후 이를 활용하는 것은
+
+마지막 layer의 vector를 연결하여 [classification](https://arxiv.org/pdf/1805.10988.pdf)을 하거나, [fingerprint](https://arxiv.org/pdf/1509.09292.pdf)를 만들거나, siamese network를 구상하여 [유사도를 측정](https://arxiv.org/pdf/1703.02161.pdf)할 수 있습니다.
+
+그러나, 분자 구조에는 edge가 위처럼 2차원의 단순한 adjacency matrix에서 표현되지 못합니다.
+Edge에도 여러가지 type이 존재하기 때문입니다.
+
+## Graphs with Mulitple Type Edges
+
+분자 구조의 경우에는, Edge (Bond라고 표현합니다)가 여러가지 type을 가질 수 있습니다. 가장 대표적인 것으로는 single, double, triple, aromatic 등의 bond type이 있습니다.
+
+[:single] [:double] [:triple] [:aromatic]
+
+이런 경우에는, 일반적으로 Aggregation 이라는 방법을 통해 데이터를 처리합니다. [reference](https://arxiv.org/pdf/1806.02473.pdf)
+
+```bash
+$ python molecule_gcn.py
+```
+
+위의 코드는, 튜토리얼 내에서 지정한 임의의 pid를 가진 molecule vector를 [RDkit](https://www.rdkit.org/)을 통해 graph 형태로 표현한 뒤, 이를 GCN forward path 에 대입하여 100차원의 feature vector를 생성하는 과정입니다.
+
+## Train Planetoid Network
 
 아래의 script를 실행시키면, 원하시는 데이터셋에 GCN 을 학습시키실 수 있습니다.
 
@@ -98,7 +131,7 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
 ```
 
-## Test (Inference) various networks
+## Test (Inference) Planetoid networks
 
 Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 학습된 weight를 테스트셋에 적용해보실 수 있습니다.
 
