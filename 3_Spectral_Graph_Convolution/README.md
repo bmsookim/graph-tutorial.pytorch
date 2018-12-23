@@ -143,7 +143,11 @@ k 개의 class 중 어느 class 에 해당하는지 classification을 하면 되
 이전 2번 튜토리얼 레포에서 보셨던 데이터의 전처리에 관한 사항은, [utils.py](utils.py) 에서 확인해보실 수 있습니다.
 
 ```bash
-python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
+# nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
+\# python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
+
+# 바로 실행하는 경우
+$ nvidia-docker run -it bumsoo-graph-tutorial python train.py --dataset [:dataset]
 ```
 
 ## Test (Inference) Planetoid networks
@@ -151,7 +155,11 @@ python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed
 Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 학습된 weight를 테스트셋에 적용해보실 수 있습니다.
 
 ```bash
-python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
+# nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
+\# python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
+
+# 바로 실행하는 경우
+$ nvidia-docker run -it bumsoo-graph-tutorial python test.py --dataset [:dataset]
 ```
 
 ## Result

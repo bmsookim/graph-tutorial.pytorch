@@ -100,7 +100,7 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
     features[test_idx, :] = features[test_idx_range, :]
     adj = nx.adjacency_matrix(nx.from_dict_of_lists(graph))
     print("| # of nodes : {}".format(adj.shape[0]))
-    print("| # of edges : {}".format(adj.sum().sum()/2))
+    print("| # of edges : {}".format(int(adj.sum().sum()/2 + adj.diagonal().sum()/2)))
 
     # Normalization
     features = normalize_sparse_features(features)

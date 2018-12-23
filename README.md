@@ -42,7 +42,18 @@ $ sudo apt-get update && sudo apt-get install docker-ce
 
 # 도커 사용자계정 추가
 $ sudo usermod -aG docker $USER
+```
 
+- nvidia-docker 설치하기(GPU 환경)
+
+```bash
+# pytorch 1.0 cuda 10 version 을 실행하기 위해서는 nvidia-driver 396 이상을 설치하여야 한다.
+sudo add-apt-repository ppa:graphics-drivers
+sudo apt-get update
+sudo apt-get install nvidia-396
+```
+
+```bash
 # nvidia docker 설치
 $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
   sudo apt-key add -
@@ -57,23 +68,23 @@ $ sudo apt-get update
 $ sudo apt-get install -y nvidia-docker2
 ```
 
-- Pull docker image 
-```bash
-$ docker pull nvidia/cuda:9.0-devel-ubuntu16.04
-
-# docker run -t {Docker Image} {시작 명령어} : interactive mode 로 진입
-$ docker run -it nvidia/cuda:9.0-devel-ubuntu16.04 /bin/bash
-```
-
 - Building your own image : Dockerfile -> Build
-베이스 이미지를 받았고, 거기에 필요한 것들을 설치할 때 그냥 설치하면 날라간다.
-따라서, Dockerfile을 만들어서 build하여 나만의 image를 만든다.
+베이스 이미지를 받은 상태에서, 필요한 것들을 설치할 때 그냥 설치하면 날아갑니다.
+따라서, Dockerfile을 만들어서 build하여 나만의 image를 만들면, 실행 환경을 저장할 수 있습니다.
 
 ```bash
 # docker build [OPTIONS] PATH | URL | -
 $ docker build -t {image name} . # 현재 경로에 Dockerfile이 있으며, {image name} 이름의 Dockerfile을 빌드함.
 
 $ nvidia-docker run -it {image name} /bin/bash
+```
+
+- Pull docker image
+```bash
+$ docker pull bumsoo-graph-tutorial
+
+# docker run -t {Docker Image} {시작 명령어} : interactive mode 로 진입
+$ docker run -it nvidia/cuda:9.0-devel-ubuntu16.04 /bin/bash
 ```
 
 ## References
