@@ -5,9 +5,9 @@
 - Translational Equivalance/Invariance
 
 ### 'Translational Equivarance/Invariance'란?
-[equivarance vs invariance](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance)
 
-[equ vs inv 2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
+참고자료 : [equivarance vs invariance 참고자료 1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
+[equivariance vs invariance 참고자료 2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
 
 이미지 I 가 (x,y) 에서 가장 중요한 classifier feature인 최대값 m 을 가진다고 가정하자. 이 때, classifier의 가장 흥미로운 특징 중 하나는, 이미지를 왜곡한 distorted image I' 에서도 마찬가지로 classification이 된다는 점이다.
 
@@ -26,9 +26,7 @@ CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대
 #### Equivarance
 
 - [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
-- [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf)
-
-좋은 참고 자료 : [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
+- [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf), [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
 
 #### Invariance
 
@@ -76,7 +74,7 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 
 이는 random walk 방식으로는 ![row sum](http://latex.codecogs.com/gif.latex?D%5E%7B-1%7DA)이 되며, 원 논문에서 사용한 방식으로는
 
-<p align="center"><img src="./imgs/norm_adj"></p>
+<p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%5E%7B%28l%29%7D%2CA%29%3D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D%5Chat%7BA%7D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D"></p>
 
 가 됩니다.
 
@@ -85,8 +83,6 @@ Non-linear activation function 으로는 ReLU (Rectified Linear Unit)를 사용�
 **최종 구현 :**
 
 위의 모든 구현 이론을 종합하여 [Kipf & Welling](http://arxiv.org/abs/1609.02907) (ICLR 2017) 논문에서 소개한 Graph Convolutional Neural Network 를 구현하였습니다.
-
-<p align="center"><img src="http://latex.codecogs.com/gif.latex?f%28H%5E%7B%28l%29%7D%2CA%29%3D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D%5Chat%7BA%7D%5Chat%7BD%7D%5E%7B-%5Cfrac%7B1%7D%7B2%7D%7D"></p>
 
 더 많은 세부 정보를 위해서는, [여기](https://tkipf.github.io/graph-convolutional-networks/)를 참조하시면 좋을 것 같습니다.
 
