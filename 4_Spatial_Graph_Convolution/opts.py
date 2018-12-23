@@ -35,7 +35,8 @@ class TrainOptions(BaseOptions):
         self.parser.add_argument('--optimizer', type=str, default='adam', help='[sgd | adam]')
         self.parser.add_argument('--epoch', type=int, default=800, help='number of training epochs')
         self.parser.add_argument('--tolerance', type=int, default=100, help='multiply by a gamma every set iter')
-        self.parser.add_argument('--nb_heads', type=int, default=[8,1], help='number of head attentions')
+        self.parser.add_argument('--nb_heads', type=int, default=8, help='number of input head attentions')
+        self.parser.add_argument('--nb_outs', type=int, default=1, help='number of output head attentions')
         self.parser.add_argument('--alpha', type=float, default=0.2, help='Alpha value for the leaky_relu')
         self.isTrain = True
 

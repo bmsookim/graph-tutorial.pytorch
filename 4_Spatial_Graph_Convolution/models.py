@@ -4,11 +4,11 @@ import torch.nn.functional as F
 from layers import GraphAttention
 
 class GAT(nn.Module):
-    def __init__(self, nfeat, nhid, nclass, dropout, nheads, alpha):
+    def __init__(self, nfeat, nhid, nclass, dropout, nheads, nouts, alpha):
         super(GAT, self).__init__()
         self.dropout = dropout
 
-        self.attentions = [GraphAttention(nfeat, nhid, dropout=dropout, alpha=alpha, concat=True) for _ in range(nheads[0])] # concat
+        self.attentions = [GraphAttention(nfeat, nhid, dropout=dropout, alpha=alpha, concat=True) for _ in range(nheads)] # concat
         for i, attention in enumerate(self.attentions):
             # Each attention will be GraphAttention(nfeat, nhid, dropout, concat=True)
             self.add_module('attention_1_{}'.format(i), attention)
@@ -20,14 +20,14 @@ class GAT(nn.Module):
             # Each attention will be GraphAttention(nfeat, nhid, dropout, concat=True)
             self.add_module('attention_2_{}'.format(i), attention)
         '''
-        self.out_att = [GraphAttention(nhid * nheads[0], nclass, dropout=dropout, alpha=alpha, concat=False) for _ in range(nheads[-1])]
+        self.out_att = [GraphAttention(nhid * nheads, nclass, dropout=dropout, alpha=alpha, concat=False) for _ in range(nouts)]
         for i, attention in enumerate(self.out_att):
             self.add_module('attention_out_{}'.format(i), attention)
 
     def forward(self, x, adj):
         x = F.dropout(x, self.dropout, training=self.training) # in_dropout
         x = torch.cat([att(x, adj) for att in self.attentions], dim=1) # concat
-        x = F.dropout(x, self.dropout, training=self.training)
+        #x = F.dropout(x, self.dropout, training=self.training)
         '''
         < Inductive learning >
         res = x

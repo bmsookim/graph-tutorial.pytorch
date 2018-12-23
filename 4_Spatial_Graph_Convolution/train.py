@@ -63,6 +63,7 @@ if (opt.model == 'attention'):
             nclass = int(labels.max().item()) + 1,
             dropout = opt.dropout,
             nheads = opt.nb_heads,
+            nouts = opt.nb_outs,
             alpha = opt.alpha
     )
 else:
