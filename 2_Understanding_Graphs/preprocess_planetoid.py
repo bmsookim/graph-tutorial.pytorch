@@ -62,12 +62,12 @@ def normalize_sparse_feature(mx):
 
 def normalize_sparse_adj(mx):
     """Row-normalize sparse matrix"""
-    rowsum = np.array(mx.sum(1))
-    r_inv_sqrt = np.power(rowsum, -0.5).flatten()
+    rowsum = np.array(mx.sum(1)) # D_hat (Diagonal Matrix for Degrees)
+    r_inv_sqrt = np.power(rowsum, -0.5).flatten() # D_hat^(-1/2)
     r_inv_sqrt[np.isinf(r_inv_sqrt)] = 0.
-    r_mat_inv_sqrt = sp.diags(r_inv_sqrt)
+    r_mat_inv_sqrt = sp.diags(r_inv_sqrt) # list of diagonal of D_hat^(-1/2)
 
-    return mx.dot(r_mat_inv_sqrt).transpose().dot(r_mat_inv_sqrt).tocoo()
+    return mx.dot(r_mat_inv_sqrt).transpose().dot(r_mat_inv_sqrt).tocoo() # D_hat^(-1/2) . A_hat . D_hat^(-1/2)
 
 def check_symmetric(a, tol=1e-8):
     return not False in (np.abs(a-a.T) < tol)
@@ -133,13 +133,13 @@ def preprocess_data(path, dataset):
     adj = nx.adjacency_matrix(nx.from_dict_of_lists(graph))
 
     print("| # of nodes : {}".format(adj.shape[0]))
-    print("| # of edges : {}".format((adj.sum().sum() + adj.diagonal.sum())/2))
+    print("| # of edges : {}".format((adj.sum().sum() + adj.diagonal().sum())/2))
     print("| # of features : {}".format(features.shape[1]))
     print("| # of clases   : {}".format(ally.shape[1]))
 
     if args.step == 'normalize':
         features = normalize_sparse_feature(features)
-        adj = normalize_sparse_adj(adj+sp.eye(adj.shape[0]))
+        adj = normalize_sparse_adj(adj+sp.eye(adj.shape[0])) # input is A_hat
 
     features = torch.FloatTensor(np.array(features.todense()))
     sparse_mx = adj.tocoo().astype(np.float32)

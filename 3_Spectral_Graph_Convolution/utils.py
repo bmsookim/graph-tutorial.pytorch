@@ -36,7 +36,7 @@ def normalize(mx):
     return mx
 
 def normalize_adj(mx):
-    """Row-normalize sparse matrix"""
+    """Laplacian Normalization"""
     rowsum = np.array(mx.sum(1))
     r_inv_sqrt = np.power(rowsum, -0.5).flatten()
     r_inv_sqrt[np.isinf(r_inv_sqrt)] = 0.
@@ -86,7 +86,6 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
     test_idx_reorder = parse_index_file("{}/ind.{}.test.index".format(path, dataset))
     test_idx_range = np.sort(test_idx_reorder)
 
-    '''
     if dataset == 'citeseer':
         #Citeseer dataset contains some isolated nodes in the graph
         test_idx_range_full = range(min(test_idx_reorder), max(test_idx_reorder)+1)
@@ -97,7 +96,6 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
         ty_extended = np.zeros((len(test_idx_range_full), y.shape[1]))
         ty_extended[test_idx_range-min(test_idx_range), :] = ty
         ty = ty_extended
-    '''
 
     features = sp.vstack((allx, tx)).tolil()
     features[test_idx_reorder, :] = features[test_idx_range, :]

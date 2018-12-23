@@ -97,6 +97,16 @@ $ python preprocess_planetoid.py --dataset citeseer --mode isolate
 
 ### Normalize
 
+Normalize 는 feature와 adjacency matrix 에 대해서 모두 Row normalize를 진행합니다.
+
+Feature vector에는, degree를 normalize 하기 위하여 row-wise normalization을 진행합니다.
+
+Adjacency Matrix에서는, 인접 노드의 개수에 따른 degree의 차이를 normalize 해주기 위하여 Symmetric Laplacian을 이용합니다. 이를 통해서, 한 노드와 인접 노드 간의 spectrum을 표현할 수 있습니다.
+
+Adjacency Matrix의 normalize는원 저자의 [paper](https://arxiv.org/pdf/1609.02907.pdf)에서 확인이 가능합니다.
+
+![H](./figures/norm_adj.png)
+
 ```bash
 $ python preprocess_planetoid.py --dataset [:dataset] --mode normalize
 ```
