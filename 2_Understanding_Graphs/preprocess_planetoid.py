@@ -138,8 +138,20 @@ def preprocess_data(path, dataset):
     print("| # of clases   : {}".format(ally.shape[1]))
 
     if args.step == 'normalize':
+        bef_features = features
+        bef_adj = adj
+
         features = normalize_sparse_feature(features)
         adj = normalize_sparse_adj(adj+sp.eye(adj.shape[0])) # input is A_hat
+
+        print("Features example before normalization : ")
+        print(bef_features[:2])
+        print("Features example after normalization : ")
+        print(features[:2])
+        print("Adjacency matrix before normalization : ")
+        print(bef_adj)
+        print("Adjacency matrix after normalization : ")
+        print(adj)
 
     features = torch.FloatTensor(np.array(features.todense()))
     sparse_mx = adj.tocoo().astype(np.float32)

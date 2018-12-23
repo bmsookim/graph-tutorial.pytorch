@@ -83,13 +83,13 @@ $ python preprocess_planetoid.py --dataset citeseer --mode split
 Pre-processing 의 두 번째 단계로, graph에 존재하는 isolated node를 검사해야 합니다.
 
 ```bash
-$ python preprocess_planetoid.py --dataset pubmed --mode isolate
+$ python preprocess_planetoid.py --dataset pubmed --step isolate
 > Isolated Nodes : []
 
-$ python preprocess_planetoid.py --dataset cora --mode isolate
+$ python preprocess_planetoid.py --dataset cora --step isolate
 > Isolated Nodes : []
 
-$ python preprocess_planetoid.py --dataset citeseer --mode isolate
+$ python preprocess_planetoid.py --dataset citeseer --step isolate
 > Isolated Nodes : [2407, 2489, 2553, 2682, 2781, 2953, 3042, 3063, 3212, 3214, 3250, 3292, 3305, 3306, 3309]
 ```
 
@@ -107,8 +107,10 @@ Adjacency Matrix의 normalize는원 저자의 [paper](https://arxiv.org/pdf/1609
 
 ![H](./figures/norm_adj.png)
 
+normalize 를 실행하고 결과를 확인하기 위해서는 아래의 코드를 실행하시면 됩니다.
+
 ```bash
-$ python preprocess_planetoid.py --dataset [:dataset] --mode normalize
+$ python preprocess_planetoid.py --dataset [:dataset] --step normalize
 ```
 
 ## Pitfall
@@ -117,6 +119,10 @@ $ python preprocess_planetoid.py --dataset [:dataset] --mode normalize
 
 - 중복된 edge 의 존재 (한 노드가 다른 노드를 두 번 이상 reference)
 - self citation의 존재 (self citation을 고려할지 그렇지 않을지에 대한 정의를 명확히 해야할 것 같습니다. 본 논문에서 제시된 edge 개수를 맞추려면 self citation을 고려해야하므로, 본 튜토리얼에서도 똑같이 적용하였습니다.)
+
+```bash
+$ python preprocess_planetoid.py --dataset [:dataset] --step normalize --mode pitfall
+```
 
 | dataset | classes | nodes | # of redundant | # of self citation | reported edge | actual edge |
 |:-------:|:-------:|:-----:|:--------------:|:------------------:|:-------------:|:-----------:|
