@@ -123,4 +123,4 @@ GAT (recon) 이 본 repository의 코드로 학습 후, test data 에 적용한 
 | GCN (rand)  | 67.9     | 80.1 | 78.9   |
 | GCN (paper) | 70.3     | 81.5 | 79.0   |
 | GAT (paper) | 72.5     | 83.0 | 79.0   |
-| GAT (recon) | 72.2     | 82.2 |        |
+| GAT (recon) | 72.2     | 82.2 | 78.6   |

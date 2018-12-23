@@ -108,8 +108,12 @@ Edge에도 여러가지 type이 존재하기 때문입니다.
 
 아래의 코드는, 튜토리얼 내에서 지정한 임의의 pid를 가진 molecule vector를 [RDkit](https://www.rdkit.org/)을 통해 graph 형태로 표현한 뒤, 이를 GCN forward path 에 대입하여 100차원의 feature vector를 생성하는 과정입니다.
 
+사용된 화합물은 1-benzylimidazole 입니다.
+
+![benz](./imgs/benz.png)
+
 ```bash
-$ python molecule_gcn.py
+$ python forward_mol.py
 ```
 
 ## Train Planetoid Network
@@ -137,7 +141,7 @@ k 개의 class 중 어느 class 에 해당하는지 classification을 하면 되
 
 ```bash
 # nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
-\# python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
+> python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 3_Spatial_Graph_Convolution/train.py --dataset [:dataset]
@@ -149,7 +153,7 @@ Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 �
 
 ```bash
 # nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
-\# python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
+> python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 3_Spatial_Graph_Convolution/test.py --dataset [:dataset]
