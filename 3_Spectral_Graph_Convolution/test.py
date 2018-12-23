@@ -1,12 +1,12 @@
 # ************************************************************
 # Author : Bumsoo Kim, 2018
-# Github : https://github.com/meliketoy/graph-cnn.pytorch
+# Github : https://github.com/meliketoy/graph-tutorial.pytorch
 #
 # Korea University, Data-Mining Lab
 # Graph Convolutional Neural Network
 #
 # Description : test.py
-# The main code for testing graph classification networks.
+# The main code for testing Graph Convolutional Networks.
 # ***********************************************************
 
 import time

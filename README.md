@@ -84,7 +84,7 @@ $ nvidia-docker run -it {image name} /bin/bash
 $ docker pull bumsoo-graph-tutorial
 
 # docker run -t {Docker Image} {시작 명령어} : interactive mode 로 진입
-$ docker run -it nvidia/cuda:9.0-devel-ubuntu16.04 /bin/bash
+$ docker run -it bumsoo /bin/bash
 ```
 
 ## How to RUN?
@@ -105,7 +105,7 @@ $ nvidia-docker run -it bumsoo /bin/bash
 $ nvidia-docker run -it bumsoo python [:단원]/[:파일].py
 
 # Example
-$ nvidia-docker run -it bumsoo python preprocess_planetoid.py --dataset cora --step normalize --mode pitfall
+$ nvidia-docker run -it bumsoo python 2_Understanding_Graphs/preprocess_planetoid.py --dataset cora --step normalize --mode pitfall
 ```
 
 ## Author

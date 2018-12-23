@@ -140,7 +140,7 @@ k 개의 class 중 어느 class 에 해당하는지 classification을 하면 되
 \# python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
-$ nvidia-docker run -it bumsoo-graph-tutorial python train.py --dataset [:dataset]
+$ nvidia-docker run -it bumsoo python 3_Spatial_Graph_Convolution/train.py --dataset [:dataset]
 ```
 
 ## Test (Inference) Planetoid networks
@@ -152,7 +152,7 @@ Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 �
 \# python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
-$ nvidia-docker run -it bumsoo-graph-tutorial python test.py --dataset [:dataset]
+$ nvidia-docker run -it bumsoo python 3_Spatial_Graph_Convolution/test.py --dataset [:dataset]
 ```
 
 ## Result
