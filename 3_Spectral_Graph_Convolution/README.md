@@ -109,7 +109,7 @@ Edge에도 여러가지 type이 존재하기 때문입니다.
 
 분자 구조의 경우에는, Edge (Bond라고 표현합니다)가 여러가지 type을 가질 수 있습니다. 가장 대표적인 것으로는 single, double, triple, aromatic 등의 bond type이 있습니다.
 
-[:single] [:double] [:triple] [:aromatic]
+<p align="center"><img src="./imgs/bond.png"></p>
 
 이런 경우에는, 일반적으로 Aggregation 이라는 방법을 통해 데이터를 처리합니다. [reference](https://arxiv.org/pdf/1806.02473.pdf)
 
