@@ -1,9 +1,9 @@
 # ************************************************************
 # Author : Bumsoo Kim, 2018
-# Github : https://github.com/meliketoy/graph-cnn.pytorch
+# Github : https://github.com/meliketoy/graph-tutorial.pytorch
 #
 # Korea University, Data-Mining Lab
-# Graph Convolutional Neural Network
+# Basic Tutorial for Non-Euclidean Graph Representation Learning
 #
 # Description : train.py
 # The main code for training classification networks.
@@ -108,7 +108,7 @@ if not os.path.isdir(save_point):
     os.mkdir(save_point)
 
 def lr_scheduler(epoch, opt):
-    return opt.lr * (0.5 ** (epoch / opt.lr_decay_epoch))
+    return opt.lr * (0.5 ** int(epoch / opt.lr_decay_epoch))
 
 # Train
 def train(epoch):

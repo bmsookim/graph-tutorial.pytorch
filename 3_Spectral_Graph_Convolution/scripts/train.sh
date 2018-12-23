@@ -1,5 +1,5 @@
 python train.py \
-    --dataset cora \
+    --dataset citeseer \
     --num_hidden 32 \
     --dropout 0.5 \
     --weight_decay 5e-4 \
