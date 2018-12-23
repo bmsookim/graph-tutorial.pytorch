@@ -1,3 +1,15 @@
+# ************************************************************
+# Author : Bumsoo Kim, 2018
+# Github : https://github.com/meliketoy/graph-tutorial.pytorch
+#
+# Korea University, Data-Mining Lab
+# Basic Tutorial for Non-Euclidean Graph Representation Learning
+#
+# Description : utils.py
+# Code for uploading planetoid dataset
+# ***********************************************************
+
+import sys
 import numpy as np
 import pickle as pkl
 import networkx as nx
@@ -13,7 +25,11 @@ def parse_index_file(filename):
 
     return index
 
-def normalize(mx):
+def missing_elements(L):
+        start, end = L[0], L[-1]
+        return sorted(set(range(start, end+1)).difference(L))
+
+def normalize_sparse_features(mx):
     """Row-normalize sparse matrix"""
     rowsum = np.array(mx.sum(1))
     r_inv = np.power(rowsum, -1).flatten()
@@ -23,20 +39,14 @@ def normalize(mx):
 
     return mx
 
-def normalize_adj(mx):
-    """Row-normalize sparse matrix"""
+def normalize_sparse_adj(mx):
+    """Laplacian Normalization"""
     rowsum = np.array(mx.sum(1))
     r_inv_sqrt = np.power(rowsum, -0.5).flatten()
     r_inv_sqrt[np.isinf(r_inv_sqrt)] = 0.
     r_mat_inv_sqrt = sp.diags(r_inv_sqrt)
 
     return mx.dot(r_mat_inv_sqrt).transpose().dot(r_mat_inv_sqrt).tocoo()
-
-def laplacian(mx, norm):
-    """Laplacian-normalize sparse matrix"""
-    assert (all (len(row) == len(mx) for row in mx)), "Input should be a square matrix"
-
-    return csgraph.laplacian(adj, normed = norm)
 
 def accuracy(output, labels):
     preds = output.max(1)[1].type_as(labels)
@@ -71,12 +81,12 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
 
     x, y, tx, ty, allx, ally, graph = tuple(objects)
 
-    test_idx_reorder = parse_index_file("{}/ind.{}.test.index".format(path, dataset))
-    test_idx_range = np.sort(test_idx_reorder)
+    test_idx = parse_index_file("{}/ind.{}.test.index".format(path, dataset))
+    test_idx_range = np.sort(test_idx)
 
     if dataset == 'citeseer':
         #Citeseer dataset contains some isolated nodes in the graph
-        test_idx_range_full = range(min(test_idx_reorder), max(test_idx_reorder)+1)
+        test_idx_range_full = range(min(test_idx), max(test_idx)+1)
         tx_extended = sp.lil_matrix((len(test_idx_range_full), x.shape[1]))
         tx_extended[test_idx_range-min(test_idx_range), :] = tx
         tx = tx_extended
@@ -85,15 +95,16 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
         ty_extended[test_idx_range-min(test_idx_range), :] = ty
         ty = ty_extended
 
+    # Feature & Adjacency Matrix
     features = sp.vstack((allx, tx)).tolil()
-    features[test_idx_reorder, :] = features[test_idx_range, :]
-
+    features[test_idx, :] = features[test_idx_range, :]
     adj = nx.adjacency_matrix(nx.from_dict_of_lists(graph))
     print("| # of nodes : {}".format(adj.shape[0]))
-    print("| # of edges : {}".format(adj.sum().sum()/2))
+    print("| # of edges : {}".format(int(adj.sum().sum()/2 + adj.diagonal().sum()/2)))
 
-    features = normalize(features)
-    adj = normalize_adj(adj + sp.eye(adj.shape[0]))
+    # Normalization
+    features = normalize_sparse_features(features)
+    adj = normalize_sparse_adj(adj + sp.eye(adj.shape[0])) # Input is A_hat
     print("| # of features : {}".format(features.shape[1]))
     print("| # of clases   : {}".format(ally.shape[1]))
 
@@ -102,7 +113,7 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
     adj = torch.FloatTensor(np.array(adj.todense()))
 
     labels = np.vstack((ally, ty))
-    labels[test_idx_reorder, :] = labels[test_idx_range, :]
+    labels[test_idx, :] = labels[test_idx_range, :]
 
     if dataset == 'citeseer':
         save_label = np.where(labels)[1]
@@ -117,10 +128,6 @@ def load_data(path="/home/bumsoo/Data/Planetoid", dataset="cora"):
     print("| # of test set  : {}".format(len(idx_test)))
 
     idx_train, idx_val, idx_test = list(map(lambda x: torch.LongTensor(x), [idx_train, idx_val, idx_test]))
-
-    def missing_elements(L):
-        start, end = L[0], L[-1]
-        return sorted(set(range(start, end+1)).difference(L))
 
     if dataset == 'citeseer':
         L = np.sort(idx_test)
