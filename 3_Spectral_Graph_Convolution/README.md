@@ -83,7 +83,7 @@ Graph Structure 데이터의 가장 대표적인 예로는, 분자 구조가 존
 
 이전 neural network 구조에서는, 분자 구조를 사용할 때는 ECFP (Extended Connectivity FingerPrint)를 사용하여 고정된 형식의 벡터 표현식을 이용해왔습니다. [예시자료](https://arxiv.org/pdf/1811.09714.pdf)
 
-<p align="left"><img width="40%" src="./imgs/ecfp.png"></p>
+<p align="left"><img src="./imgs/ecfp.png"></p>
 
 그러나, 이는 Graph 단위에서 특정 요소가 존재하는지의 여부에 대한 표현식이므로, 분명한 한계가 존재할 수 밖에 없습니다.
 
