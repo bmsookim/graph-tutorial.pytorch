@@ -44,12 +44,6 @@ opt = TrainOptions().parse()
 adj, features, labels, idx_train, idx_val, idx_test = load_data(path=opt.dataroot, dataset=opt.dataset)
 use_gpu = torch.cuda.is_available()
 
-random.seed(42)
-np.random.seed(42)
-torch.manual_seed(42)
-if use_gpu:
-    torch.cuda.manual_seed(42)
-
 model, optimizer = None, None
 best_acc = 0
 early_stop = 0

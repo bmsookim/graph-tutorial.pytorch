@@ -100,6 +100,10 @@ $ nvidia-docker run -it bumsoo python 4_Spatial_Graph_Convolution/train.py --dat
 $ nvidia-docker run -it bumsoo python 4_Spatial_Graph_Convolution/train.py --dataset [:else] --lr 5e-3
 ```
 
+위 코드를 실행하면, 아래와 같은 결과화면을 얻으실 수 있습니다.
+
+![train_citeseer](./imgs/citeseer_attention_train.png)
+
 ## Test (Inference) Planetoid networks
 
 Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 학습된 weight를 테스트셋에 적용해보실 수 있습니다.
@@ -111,6 +115,10 @@ Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 �
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 4_Spatial_Graph_Convolution/test.py --dataset [:dataset]
 ```
+
+위 코드를 실행하면, 아래와 같은 결과화면을 얻으실 수 있습니다.
+
+![test_citeseer](./imgs/citeseer_attention_test.png)
 
 ## Result
 

@@ -63,16 +63,6 @@ if (opt.model == 'basic'):
             dropout = opt.dropout,
             init = opt.init_type
     )
-elif (opt.model == 'attention'):
-    print("| Constructing Attention GCN model...")
-    model = GAT(
-            nfeat = features.shape[1],
-            nhid = opt.num_hidden,
-            nclass = int(labels.max().item()) + 1,
-            dropout = opt.dropout,
-            nheads = opt.nb_heads,
-            alpha = opt.alpha
-    )
 else:
     raise NotImplementedError
 

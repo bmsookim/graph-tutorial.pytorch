@@ -121,6 +121,12 @@ $ python forward_mol.py
 $ docker run -it bumsoo python 3_Spectral_Graph_Convolution/forward_mol.py
 ```
 
+위 코드를 실행시키면, 아래와 같은 결과를 얻을 수 있습니다.
+
+![mol](./imgs/result_mol.png)
+
+결과 화면을 통해, adj = (12 x 12 x 6), feat = (12 x 62) 짜리 그래프로부터 고정된 500 크기의 vector 로 forward가 됐음을 확인할 수 있습니다.
+
 ## Train Planetoid Network
 
 | dataset | classes | nodes | # of  edge  |
@@ -152,6 +158,10 @@ k 개의 class 중 어느 class 에 해당하는지 classification을 하면 되
 $ nvidia-docker run -it bumsoo python 3_Spatial_Graph_Convolution/train.py --dataset [:dataset]
 ```
 
+위 코드를 실행하면 다음과 같은 결과 화면을 보실 수 있습니다.
+
+![train_cora](./imgs/cora_gcn_train.png)
+
 ## Test (Inference) Planetoid networks
 
 Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 학습된 weight를 테스트셋에 적용해보실 수 있습니다.
@@ -163,6 +173,10 @@ Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 �
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 3_Spatial_Graph_Convolution/test.py --dataset [:dataset]
 ```
+
+위 코드를 실행하면 다음과 같은 결과 화면을 보실 수 있습니다.
+
+![test_cora](./imgs/cora_gcn_test.png)
 
 ## Result
 

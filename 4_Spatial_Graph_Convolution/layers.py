@@ -20,9 +20,9 @@ class GraphAttention(nn.Module):
         self.concat = concat
 
         # Glorot Initialization
-        self.W = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(in_features, out_features).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(2.0)), requires_grad=True)
-        self.a1 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(2.0)), requires_grad=True)
-        self.a2 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(2.0)), requires_grad=True)
+        self.W = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(in_features, out_features).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(1.4)), requires_grad=True)
+        self.a1 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(1.4)), requires_grad=True)
+        self.a2 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(1.4)), requires_grad=True)
 
         self.leakyrelu = nn.LeakyReLU(self.alpha)
 
@@ -43,7 +43,7 @@ class GraphAttention(nn.Module):
         h_prime = torch.matmul(attention, h)
 
         if self.concat:
-            return F.relu(h_prime)
+            return F.elu(h_prime) # though, relu shows better performance
         else:
             return h_prime
 
