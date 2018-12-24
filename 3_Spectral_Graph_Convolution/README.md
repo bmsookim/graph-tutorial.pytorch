@@ -172,4 +172,4 @@ $ nvidia-docker run -it bumsoo python 3_Spatial_Graph_Convolution/test.py --data
 |:------------|:---------|:-----|:-------|
 | GCN (rand)  | 67.9     | 80.1 | 78.9   |
 | GCN (paper) | 70.3     | 81.5 | 79.0   |
-| GCN (recon) | 70.6     | 80.9 | 80.8   |
+| **GCN (recon)** | **70.6**     | **80.9** | **80.8**   |

@@ -13,7 +13,7 @@ Graph Attention Networks는 spatial 하게 인접한 노드들에 attention weig
 
 서로 다른 노드와 자신과의 self-attention을 통해 우리는 다음과 같은 식을 얻습니다.
 
-<p align="left"><img width="30%" src="./imgs/e_ij.png"></p>
+<p align="left"><img width="10%" src="./imgs/e_ij.png"></p>
 
 코드 상에서 이 식은 다음과 같습니다.
 
@@ -30,7 +30,7 @@ e = f_1 + f_2.transpose(0,1)
 
 (normalize 방법으론 일반적으로 softmax를 이용합니다.)
 
-<p align="left"><img width="30%" src="./imgs/a_ij.png"></p>
+<p align="left"><img width="40%" src="./imgs/a_ij.png"></p>
 
 코드 상에서 이 식은 다음과 같습니다.
 
@@ -46,7 +46,7 @@ attention = F.softmax(attention, dim=1)
 
 마지막 layer에서는 head의 개수만큼 발생한 output의 average를 취해줍니다.
 
-<p align="left"><img width="30%" src="(./imgs/multi_head.png)"></p>
+<p align="left"><img width="30%" src="./imgs/multi_head.png"></p>
 
 코드 상에서 이 식은 다음과 같습니다.
 
