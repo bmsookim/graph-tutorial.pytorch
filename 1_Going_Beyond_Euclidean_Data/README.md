@@ -117,7 +117,7 @@ Invariance와 Equivariance한 성질을 부각하여 학습을 조금 더 효과
 
 CNN을 transformation-invariant하게 만들기 위해, training sample에 대한 data-augmentation을 수행합니다.
 
-<p align="center"><img width="50%" src="./figures/augment.png")></p>
+<p align="center"><img width="60%" src="./figures/augment.png")></p>
 
 위에 나타난 일련의 augmentation을 통해서, 우리는 이미지가 변형됨에도 불구하고 같은 feature vector로 맵핑되도록 학습할 수 있게 됩니다.
 

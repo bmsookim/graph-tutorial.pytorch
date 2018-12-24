@@ -13,7 +13,7 @@ Graph Attention Networks는 spatial 하게 인접한 노드들에 attention weig
 
 서로 다른 노드와 자신과의 self-attention을 통해 우리는 다음과 같은 식을 얻습니다.
 
-![e_ij](./imgs/e_ij.png)
+<p align="left"><img width="30%" src="./imgs/e_ij.png"></p>
 
 코드 상에서 이 식은 다음과 같습니다.
 
@@ -30,7 +30,7 @@ e = f_1 + f_2.transpose(0,1)
 
 (normalize 방법으론 일반적으로 softmax를 이용합니다.)
 
-![a_ij](./imgs/a_ij.png)
+<p align="left"><img width="30%" src="./imgs/a_ij.png"></p>
 
 코드 상에서 이 식은 다음과 같습니다.
 
@@ -46,7 +46,7 @@ attention = F.softmax(attention, dim=1)
 
 마지막 layer에서는 head의 개수만큼 발생한 output의 average를 취해줍니다.
 
-![multi](./imgs/multi_head.png)
+<p align="left"><img width="30%" src="(./imgs/multi_head.png)"></p>
 
 코드 상에서 이 식은 다음과 같습니다.
 
@@ -93,7 +93,7 @@ docker run -it bumsoo python 4_Spatial_Graph_Convolution/train.py --dataset pubm
 
 ```bash
 # nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
-># python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
+> python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 4_Spatial_Graph_Convolution/train.py --dataset pubmed --lr 0.01 --weight_decay 1e-3 --nb_heads 8
@@ -106,7 +106,7 @@ Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 �
 
 ```bash
 # nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
-># python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
+> python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 4_Spatial_Graph_Convolution/test.py --dataset [:dataset]
@@ -123,4 +123,4 @@ GAT (recon) 이 본 repository의 코드로 학습 후, test data 에 적용한 
 | GCN (rand)  | 67.9     | 80.1 | 78.9   |
 | GCN (paper) | 70.3     | 81.5 | 79.0   |
 | GAT (paper) | 72.5     | 83.0 | 79.0   |
-| GAT (recon) | 72.2     | 82.2 | 78.6   |
+| **GAT (recon)** | **72.2**     | **82.2** | **78.6**   |

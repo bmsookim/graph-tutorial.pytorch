@@ -108,9 +108,10 @@ Edge에도 여러가지 type이 존재하기 때문입니다.
 
 아래의 코드는, 튜토리얼 내에서 지정한 임의의 pid를 가진 molecule vector를 [RDkit](https://www.rdkit.org/)을 통해 graph 형태로 표현한 뒤, 이를 GCN forward path 에 대입하여 100차원의 feature vector를 생성하는 과정입니다.
 
-사용된 화합물은 1-benzylimidazole 입니다.
+사용된 화합물은 아래와 같이 생긴 1-benzylimidazole 입니다.
 
-<p align="left"><img width="40%" src="./imgs/benz.png"></p>
+
+<p align="left"><img width="30%" src="./imgs/benz.png"></p>
 
 ```bash
 # docker run -it bumsoo /bin/bash 실행된 환경
