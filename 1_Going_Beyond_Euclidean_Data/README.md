@@ -34,6 +34,7 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 - 3D Mesh
 
     [Wikipedia] Material made of a network of wire or thread.
+
     3D Mesh란, 다각형의 조합을 통해 3D 모델을 구성한 것을 의미한다.
 
     매우 많은 개수의 다각형으로 실제에 가깝게 사물을 표현할 수 있으면서도, 적은 개수의 간단한 모양의 조합으로도 사물을 빠르게 표현할 수 있는 것이 가장 큰 장점이다.
@@ -132,7 +133,7 @@ CNN을 transformation-invariant하게 만들기 위해, training sample에 대�
 
 ## 2.3 Non Euclidean Data : Geometric Deep Learning
 
-그렇다면, 위의 두 조건이 충족되지 않는 ***Non-Euclidean data***에 대해서는 어떻게 학습을 할 수 있을까요?
+그렇다면, 위의 두 조건이 충족되지 않는 ***Non-Euclidean data*** 에 대해서는 어떻게 학습을 할 수 있을까요?
 
 대표적으로 두 가지의 접근법이 있어왔는데, 한가지는 Spatial한 접근법이고, 한 가지는 Spectral한 접근법입니다.
 
