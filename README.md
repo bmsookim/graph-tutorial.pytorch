@@ -6,14 +6,15 @@
 
 ## Table of Contents
 - [1. Going Beyond Euclidean Data : Graphs](./1_Going_Beyond_Euclidean_Data/)
-- [2. Understanding Graphs : Planetoid Dataset](./2_Understading_Graphs/)
+- [2. Understanding Graphs : Planetoid Dataset](./2_Understanding_Graphs/)
 - [3. Graph Node Classification : Spectral](./3_Spectral_Graph_Convolution/)
 - [4. Graph Node Classification : Spatial](./4_Spatial_Graph_Convolution/)
 
 ## Requirements
 
 - Install docker
-For more details, see [here](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html), [here](https://hiseon.me/2018/02/19/install-docker/)
+설치 가이드 : [설치자료1](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html), [설치자료2](https://hiseon.me/2018/02/19/install-docker/)
+
 ```bash
 # 오래된 버전의 도커가 존재하는 경우, 오래된 버전의 도커 삭제
 $ sudo apt-get remove docker docker-engine docker.io
@@ -69,14 +70,15 @@ $ sudo apt-get install -y nvidia-docker2
 ```
 
 - Building your own image : Dockerfile -> Build
-베이스 이미지를 받은 상태에서, 필요한 것들을 설치할 때 그냥 설치하면 날아갑니다.
-따라서, Dockerfile을 만들어서 build하여 나만의 image를 만들면, 실행 환경을 저장할 수 있습니다.
+베이스 이미지를 받은 상태에서, 필요한 라이브러리를 그냥 설치하면 종료 이후 설치 내역은 보존되지 않습니다.
+따라서, Dockerfile을 만들어서 build하여 image를 만들면, 실행 환경을 저장할 수 있습니다.
 
 ```bash
 # docker build [OPTIONS] PATH | URL | -
 $ docker build -t {image name} . # 현재 경로에 Dockerfile이 있으며, {image name} 이름의 Dockerfile을 빌드함.
 
-$ nvidia-docker run -it {image name} /bin/bash
+# 예시 : 이번 튜토리얼에서는 bumsoo 라는 이름으로 이미지를 빌드하여 사용하였습니다.
+$ docker build -t bumsoo .
 ```
 
 - Pull docker image
@@ -85,10 +87,22 @@ $ docker pull bumsoo-graph-tutorial
 
 # docker run -t {Docker Image} {시작 명령어} : interactive mode 로 진입
 $ docker run -it bumsoo /bin/bash
+
+# GPU 환경의 interactive mode
+$ nvidia-docker run -it bumsoo /bin/bash
 ```
 
-## How to RUN?
+## How to Run?
 
+실행하는 방법은 두 가지가 있습니다.
+
+첫 번째는 docker interactive mode로 진입하여, 일반적인 python file을 실행하는 것입니다.
+
+두 번째는, docker 경로를 주어 바로 실행하는 방법입니다.
+
+각각의 실행 방법은 다음과 같습니다.
+
+- docker interactive mode
 ```bash
 $ nvidia-docker run -it bumsoo /bin/bash
 
@@ -101,6 +115,7 @@ $ nvidia-docker run -it bumsoo /bin/bash
 > python preprocess_planetoid.py --dataset cora --step normalize --mode pitfall
 ```
 
+- docker run
 ```bash
 $ nvidia-docker run -it bumsoo python [:단원]/[:파일].py
 
