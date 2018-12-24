@@ -27,7 +27,7 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 이해가 쉬운 가장 간단한 예로는, 구의 표면(2차원 매니폴드)를 들 수 있습니다.
 3차원 공간에서 A점과 B점 사이의 유클리디안 거리(얇은 실선)와 실제의 거리(geodesic distance, 굵은 실선)는 일치하지 않는 것을 볼 수 있습니다.
 
-<img width="50%" src="./figures/distance.png">
+<p><img width="50%" src="./figures/distance.png"></p>
 
 이러한 Manifold 형태를 가지는 데이터의 대표적인 예시로는 3D mesh 혹은 point cloud 형태를 들 수 있습니다.
 
@@ -45,7 +45,7 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 
     이런 point cloud는, surface reconstruction을 위해 앞서 소개한 mesh 로 변형하여 처리하기도 한다.
 
-| <img width ="200" src="./figures/mesh.jpg"> | <img width="150" src="./figures/point-cloud.png"> |
+| <p><img width ="200" src="./figures/mesh.jpg"></p> | <p><img width="200" src="./figures/point-cloud.png"></p> |
 |:---:|:---:|
 | **3D Mesh** | **Point cloud** |
 
@@ -56,14 +56,14 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 
 일상적으로 볼 수 있는 Graph형 데이터의 예시로는 Social network 혹은 Brain functional connectivity network등이 있습니다.
 
-| <img width="200" src="./figures/social_network.png"> | <img width="150" src="./figures/brain_functions.jpeg"> |
+| <p><img width="200" src="./figures/social_network.png"></p> | <p><img width="150" src="./figures/brain_functions.jpeg"></p> |
 |:---:|:---:|
 | **Social Networks** | **Brain Functional Networks** |
 
 |     용어     |        설명         |
 |:------------:|:--------------------|
-| sparse graph | node의 개수 > edge의 개수 | 
-| dense graph  | node의 개수 < edge의 개수 |
+| sparse graph | node의 개수 `>` edge의 개수 | 
+| dense graph  | node의 개수 `<` edge의 개수 |
 | adjacent     | 임의의 두 node가 하나의 edge로 연결되어 있을 경우, 두 node는 서로 adjacent 하다 |
 | incident     | 임의의 두 node가 하나의 edge로 연결되어 있을 경우, edge는 두 node에 incident 하다 |
 | degree       | node에 연결된 edge의 개수 |
@@ -81,13 +81,13 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 
 그렇다면, 각각 Grid structure 와 Translational Equivalence/Invariance는 어떤 성질이길래 CNN과 같은 알고리즘이 성공적으로 적용될 수 있었을까요?
 
-## Grid structure
+## 2.1 Grid structure
 
 Grid based metric은 input 크기와 무관하게 적은 parameter의 개수로 이를 학습하는 것을 가능하게 합니다.
 
 즉, 이미지의 grid structure는 CNN이 사용하는 아주 작은 크기의 filter만으로도 방대한 이미지의 특징을 빠르게 파악할 수 있도록 해줍니다.
 
-## 'Translational Equivarance/Invariance'란?
+## 2.2 'Translational Equivarance/Invariance'란?
 
 Translational Equivarance/Invariance를 알아보기 위해, 먼저 이미지 처리의 경우를 살펴봅시다.
 
@@ -113,30 +113,30 @@ Translational Equivarance/Invariance란, 모든 벡터에 대해 translation (u,
 
 Invariance와 Equivariance한 성질을 부각하여 학습을 조금 더 효과적으로 하기 위하여 다음과 같은 방법이 활용됩니다.
 
-### Invariance
+### 2.2.1 Invariance
 
 CNN을 transformation-invariant하게 만들기 위해, training sample에 대한 data-augmentation을 수행합니다.
 
-![augment](./figures/augment.png)
+<p align="center"><img width="50%" src="./figures/augment.png")></p>
 
 위에 나타난 일련의 augmentation을 통해서, 우리는 이미지가 변형됨에도 불구하고 같은 feature vector로 맵핑되도록 학습할 수 있게 됩니다.
 
 이는 generalization 단계에서 기존의 이미지 인식 방식보다 월등히 높은 성능을 거둘 수 있도록 하는 데에 큰 역할을 차지하였습니다.
 
-### Equivarance
+### 2.2.2 Equivarance
 
 - [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
 - [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf), [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
 
 ----------------------------------------------------------------------------------------------------------------
 
-## Non Euclidean Data : Geometric Deep Learning
+## 2.3 Non Euclidean Data : Geometric Deep Learning
 
 그렇다면, 위의 두 조건이 충족되지 않는 ***Non-Euclidean data***에 대해서는 어떻게 학습을 할 수 있을까요?
 
 대표적으로 두 가지의 접근법이 있어왔는데, 한가지는 Spatial한 접근법이고, 한 가지는 Spectral한 접근법입니다.
 
-## 2.1 Spatial Domain
+## 2.3.1 Spatial Domain
 
 기존에 알고 있던 그리드로 표현할 수 있는 데이터들은 대부분 Spatial Domain 에서 처리가 가능합니다.
 대표적인 Spatial Domain에서의 처리는 이미지 인식에 이미 널리 알려진 Convolutional Neural Network가 존재합니다.
@@ -148,7 +148,7 @@ CNN을 transformation-invariant하게 만들기 위해, training sample에 대�
 
 더 자세한 내용은 [4_Spatial_Graph_Convolution](../4_Spatial_Graph_Convolution)에서 다루겠습니다.
 
-## 2.2 Spectral Domain
+## 2.3.2 Spectral Domain
 
 Spatial Domain 내에서 일정한 grid 를 가지지 않아 처리하기가 복잡한 데이터를 다루는 방법 중의 하나는 이를 spectral domain으로 사영시키는 것이다.
 

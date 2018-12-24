@@ -93,7 +93,7 @@ docker run -it bumsoo python 4_Spatial_Graph_Convolution/train.py --dataset pubm
 
 ```bash
 # nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
-\# python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
+># python train.py --dataroot [:dir to dataset] --datset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 4_Spatial_Graph_Convolution/train.py --dataset pubmed --lr 0.01 --weight_decay 1e-3 --nb_heads 8
@@ -106,7 +106,7 @@ Training 과정을 모두 마치신 이후, 다음과 같은 코드를 통해 �
 
 ```bash
 # nvidia docker run -it bumsoo-graph-tutorial /bin/bash 실행 이후
-\# python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
+># python test.py --dataroot [:dir to dataset] --dataset [:cora | citeseer | pubmed]
 
 # 바로 실행하는 경우
 $ nvidia-docker run -it bumsoo python 4_Spatial_Graph_Convolution/test.py --dataset [:dataset]
