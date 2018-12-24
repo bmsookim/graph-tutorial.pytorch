@@ -45,7 +45,7 @@ Manifold란, 두 점 사이의 거리 혹은 유사도가 근거리에서는 유
 
     이런 point cloud는, surface reconstruction을 위해 앞서 소개한 mesh 로 변형하여 처리하기도 한다.
 
-| <img width ="300" src="./figures/mesh.jpg"> | <img width="250" src="./figures/point-cloud.png"> |
+| <img width ="200" src="./figures/mesh.jpg"> | <img width="150" src="./figures/point-cloud.png"> |
 |:---:|:---:|
 | **3D Mesh** | **Point cloud** |
 
@@ -56,7 +56,7 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 
 일상적으로 볼 수 있는 Graph형 데이터의 예시로는 Social network 혹은 Brain functional connectivity network등이 있습니다.
 
-| <img width="300" src="./figures/social_network.png"> | <img width="250" src="./figures/brain_functions.jpeg"> |
+| <img width="200" src="./figures/social_network.png"> | <img width="150" src="./figures/brain_functions.jpeg"> |
 |:---:|:---:|
 | **Social Networks** | **Brain Functional Networks** |
 
@@ -93,12 +93,16 @@ Translational Equivarance/Invariance를 알아보기 위해, 먼저 이미지 �
 
 이미지 I 가 (x,y) 에서 가장 중요한 classifier feature인 최대값 m 을 가진다고 가정합시다. 이 때, classifier의 가장 흥미로운 특징 중 하나는, 이미지를 왜곡한 distorted image I' 에서도 m에 의해 마찬가지로 classification이 된다는 점입니다.
 
-Translational Equivarance/Invariance란, 모든 벡터에 대해 translation (u,v)를 적용한다고 했을 때, translation된 새로운 이미지 I'의 최대값 m' 는 m과 동일하며(Invariance), 최대값이 나타나는 자리 (x', y')는 (x-u, y-v)로 distortion에 대해 "equally" 변화한다는 것을 의미합니다(Equivarance).
+이러한 특징을 데이터의 Translational한 구조라고 하는데, Translational한 구조의 데이터는 모델의 weight sharing을 가능하게 만들어, 학습 시 매우 큰 이점을 줄 수 있습니다.
+
+Translational 구조에는 대표적으로 Equivarance와 Invariance를 들 수 있습니다.
+
+Translational Equivarance/Invariance란, 모든 벡터에 대해 translation (u,v)를 적용한다고 했을 때, translation된 새로운 이미지 I'의 최대값 m' 는 m과 동일하며(Equivarance), 최대값이 나타나는 자리 (x', y')는 (x-u, y-v)로 distortion에 대해 "equally" 변화한다는 것을 의미합니다(Invariance).
 
 | 용어 | 공식 | 설명 | 
 |:---|:-----------------------|:---|
-| Translational Equivalance | (x',y') = (x-u, y-v) | 변형에도 불구하고 같은 feature로 mapping 된다. |
-| Translational Invariance | m' = m | 이미지에서의 변형식은 feature에서의 변형식과 대응된다. |
+| Translational Invariance | (x',y') = (x-u, y-v) | 변형에도 불구하고 같은 feature로 mapping 된다. |
+| Translational Equivarance | m' = m | 이미지에서의 변형식은 feature에서의 변형식과 대응된다. |
 
 우리가 흔히 사용하는 2D convnet의 input인 image는, translation에 대해서는 equivalent하나, rotation에 대해서는 equivalent하지 않습니다.
 
@@ -107,20 +111,26 @@ Translational Equivarance/Invariance란, 모든 벡터에 대해 translation (u,
 참고자료 : [참고자료1](https://www.slideshare.net/ssuser06e0c5/brief-intro-invariance-and-equivariance), 
 [참고자료2](https://www.quora.com/What-is-the-difference-between-equivariance-and-invariance-in-Convolution-neural-networks)
 
-이와 같은 Invariance와 Equivariance한 성질을 부각하여 학습을 조금 더 효과적으로 하기 위해 다양한 전처리 방법 및 모델이 등장하게 됩니다.
+Invariance와 Equivariance한 성질을 부각하여 학습을 조금 더 효과적으로 하기 위하여 다음과 같은 방법이 활용됩니다.
 
 ### Invariance
 
-CNN을 transformation-'invariant'하게 만들기 위해, training sample에 대한 data-augmentation을 수행합니다.
+CNN을 transformation-invariant하게 만들기 위해, training sample에 대한 data-augmentation을 수행합니다.
 
 ![augment](./figures/augment.png)
 
-### Equivarance
+위에 나타난 일련의 augmentation을 통해서, 우리는 이미지가 변형됨에도 불구하고 같은 feature vector로 맵핑되도록 학습할 수 있게 됩니다.
 
-Translational한 구조의 데이터로부터 weight sharing을 가능하게 만들기 위하여, Equivarance에 주목한 논문은 아래와 같습니다.
+이는 generalization 단계에서 기존의 이미지 인식 방식보다 월등히 높은 성능을 거둘 수 있도록 하는 데에 큰 역할을 차지하였습니다.
+
+### Equivarance
 
 - [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
 - [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf), [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)
+
+----------------------------------------------------------------------------------------------------------------
+
+## Non Euclidean Data : Geometric Deep Learning
 
 그렇다면, 위의 두 조건이 충족되지 않는 ***Non-Euclidean data***에 대해서는 어떻게 학습을 할 수 있을까요?
 
