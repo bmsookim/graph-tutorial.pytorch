@@ -110,7 +110,7 @@ Edge에도 여러가지 type이 존재하기 때문입니다.
 
 사용된 화합물은 1-benzylimidazole 입니다.
 
-<p align="left"><img width="40%" src="(./imgs/benz.png)"></p>
+<p align="left"><img width="40%" src="./imgs/benz.png"></p>
 
 ```bash
 # docker run -it bumsoo /bin/bash 실행된 환경
