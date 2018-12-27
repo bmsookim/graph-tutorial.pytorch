@@ -36,5 +36,6 @@ class GAT(nn.Module):
         x = x + res
         '''
         x = torch.mean(torch.stack([att(x, adj) for att in self.out_att], dim=1), dim=1) # avg (for pubmed)
+        x = F.elu(x)
 
         return F.log_softmax(x, dim=1)

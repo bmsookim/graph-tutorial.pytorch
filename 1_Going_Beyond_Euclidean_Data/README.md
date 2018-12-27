@@ -78,9 +78,9 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 이러한 기존의 Euclidean data (이미지, 음향 등)에서는 두 가지 특징이 성립했습니다.
 
 - Grid structure
-- Translational Equivalance/Invariance
+- Translational Equivariance/Invariance
 
-그렇다면, 각각 Grid structure 와 Translational Equivalence/Invariance는 어떤 성질이길래 CNN과 같은 알고리즘이 성공적으로 적용될 수 있었을까요?
+그렇다면, 각각 Grid structure 와 Translational Equivariance/Invariance는 어떤 성질이길래 CNN과 같은 알고리즘이 성공적으로 적용될 수 있었을까요?
 
 ## 2.1 Grid structure
 
@@ -88,24 +88,24 @@ Grid based metric은 input 크기와 무관하게 적은 parameter의 개수로 
 
 즉, 이미지의 grid structure는 CNN이 사용하는 아주 작은 크기의 filter만으로도 방대한 이미지의 특징을 빠르게 파악할 수 있도록 해줍니다.
 
-## 2.2 'Translational Equivarance/Invariance'란?
+## 2.2 'Translational Equivariance/Invariance'란?
 
-Translational Equivarance/Invariance를 알아보기 위해, 먼저 이미지 처리의 경우를 살펴봅시다.
+Translational Equivariance/Invariance를 알아보기 위해, 먼저 이미지 처리의 경우를 살펴봅시다.
 
 이미지 I 가 (x,y) 에서 가장 중요한 classifier feature인 최대값 m 을 가진다고 가정합시다. 이 때, classifier의 가장 흥미로운 특징 중 하나는, 이미지를 왜곡한 distorted image I' 에서도 m에 의해 마찬가지로 classification이 된다는 점입니다.
 
 이러한 특징을 데이터의 Translational한 구조라고 하는데, Translational한 구조의 데이터는 모델의 weight sharing을 가능하게 만들어, 학습 시 매우 큰 이점을 줄 수 있습니다.
 
-Translational 구조에는 대표적으로 Equivarance와 Invariance를 들 수 있습니다.
+Translational 구조에는 대표적으로 Equivariance와 Invariance를 들 수 있습니다.
 
-Translational Equivarance/Invariance란, 모든 벡터에 대해 translation (u,v)를 적용한다고 했을 때, translation된 새로운 이미지 I'의 최대값 m' 는 m과 동일하며(Equivarance), 최대값이 나타나는 자리 (x', y')는 (x-u, y-v)로 distortion에 대해 "equally" 변화한다는 것을 의미합니다(Invariance).
+Translational Equivariance/Invariance란, 모든 벡터에 대해 translation (u,v)를 적용한다고 했을 때, translation된 새로운 이미지 I'의 최대값 m' 는 m과 동일하며(Equivariance), 최대값이 나타나는 자리 (x', y')는 (x-u, y-v)로 distortion에 대해 "equally" 변화한다는 것을 의미합니다(Invariance).
 
 | 용어 | 공식 | 설명 | 
 |:---|:-----------------------|:---|
 | Translational Invariance | (x',y') = (x-u, y-v) | 변형에도 불구하고 같은 feature로 mapping 된다. |
-| Translational Equivarance | m' = m | 이미지에서의 변형식은 feature에서의 변형식과 대응된다. |
+| Translational Equivariance | m' = m | 이미지에서의 변형식은 feature에서의 변형식과 대응된다. |
 
-우리가 흔히 사용하는 2D convnet의 input인 image는, translation에 대해서는 equivalent하나, rotation에 대해서는 equivalent하지 않습니다.
+우리가 흔히 사용하는 2D convnet의 input인 image는, translation에 대해서는 equivariant하나, rotation에 대해서는 equivariant하지 않습니다.
 
 따라서, 이것이 흔히 이미지 인식 학습 코드에 나타나있는 augmentation코드에 'rotation'이 자주 등장하는 이유라고 생각할 수 있습니다.
 
@@ -124,7 +124,7 @@ CNN을 transformation-invariant하게 만들기 위해, training sample에 대�
 
 이는 generalization 단계에서 기존의 이미지 인식 방식보다 월등히 높은 성능을 거둘 수 있도록 하는 데에 큰 역할을 차지하였습니다.
 
-### 2.2.2 Equivarance
+### 2.2.2 Equivariance
 
 - [Group Convnet](https://arxiv.org/pdf/1602.07576.pdf)
 - [Capsule Net](https://arxiv.org/pdf/1710.09829.pdf), [CNN의 한계와 CapsNet에 관한 설명](https://jayhey.github.io/deep%20learning/2017/11/28/CapsNet_1/)

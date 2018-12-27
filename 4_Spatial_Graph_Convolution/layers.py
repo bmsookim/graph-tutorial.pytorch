@@ -20,9 +20,9 @@ class GraphAttention(nn.Module):
         self.concat = concat
 
         # Glorot Initialization
-        self.W = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(in_features, out_features).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(1.4)), requires_grad=True)
-        self.a1 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(1.4)), requires_grad=True)
-        self.a2 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(1.4)), requires_grad=True)
+        self.W = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(in_features, out_features).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(2.0)), requires_grad=True)
+        self.a1 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(2.0)), requires_grad=True)
+        self.a2 = nn.Parameter(nn.init.xavier_uniform_(torch.Tensor(out_features, 1).type(torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor), gain=np.sqrt(2.0)), requires_grad=True)
 
         self.leakyrelu = nn.LeakyReLU(self.alpha)
 
@@ -32,18 +32,21 @@ class GraphAttention(nn.Module):
 
         f_1 = torch.matmul(h, self.a1)
         f_2 = torch.matmul(h, self.a2)
-        e = self.leakyrelu(f_1 + f_2.transpose(0,1))
+        #e = self.leakyrelu(f_1 + f_2.transpose(0,1))
+        print(f_1.shape)
+        print(f_2.shape)
+        print(f_2.transpose(0,1).shape)
+        print((f_1 +f_2.transpose(0,1)).shape)
+        e = self.leakyrelu(torch.cat((f_1, f_2)))
 
         zero_vec = -9e15*torch.ones_like(e)
         attention = torch.where(adj > 0, e, zero_vec)
-
         attention = F.softmax(attention, dim=1) # normalized attention weights
-
         attention = F.dropout(attention, self.dropout, training=self.training)
         h_prime = torch.matmul(attention, h)
 
         if self.concat:
-            return F.elu(h_prime) # though, relu shows better performance
+            return F.relu(h_prime)
         else:
             return h_prime
 
