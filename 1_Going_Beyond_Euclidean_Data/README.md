@@ -61,6 +61,8 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 |:---:|:---:|
 | **Social Networks** | **Brain Functional Networks** |
 
+용어 설명 : [출처](https://ratsgo.github.io/data%20structure&algorithm/2017/11/18/graph/)
+
 |     용어     |        설명         |
 |:------------:|:--------------------|
 | sparse graph | node의 개수 `>` edge의 개수 | 
@@ -68,6 +70,20 @@ Graph란, 일련의 노드의 집합 **V**와 연결(변)의 집합 **E**로 구
 | adjacent     | 임의의 두 node가 하나의 edge로 연결되어 있을 경우, 두 node는 서로 adjacent 하다 |
 | incident     | 임의의 두 node가 하나의 edge로 연결되어 있을 경우, edge는 두 node에 incident 하다 |
 | degree       | node에 연결된 edge의 개수 |
+
+- 20190107 Issue
+
+    Sparse Graph와 Dense Graph는 위와 같은 정의 외에도,
+
+    a)
+    Sparse Graph : A sparse graph is a graph G = (V, E) in which |E| = O(|V|).
+    Dense Graph : A dense graph is a graph G = (V, E) in which |E| = Θ(|V|2).
+
+    b)
+    A dense graph is a graph in which the number of edges is close to the maximal number of edges.
+    A sparse graph is a graph in which the number of edges is close to the minimal number of edges.
+
+    와 같은 정의도 존재합니다.
 
 ------------------------------------------------------------------------------------------------------------
 
